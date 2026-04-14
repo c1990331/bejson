@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV 转 JSON - 在线 CSV 转换为 JSON - BeJSON</title>
+    <meta name="description" content="免费的CSV转JSON在线工具，输入CSV自动转换为JSON格式。">
+    <meta name="keywords" name="CSV转JSON,csv to json">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo"><a href="/">BeJSON</a></div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/#tools">工具</a></li>
+                    <li><a href="/#code-gen">代码生成</a></li>
+                    <li><a href="/#convert">格式转换</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-page-header">
+                <h1>CSV 转 JSON</h1>
+                <p>输入 CSV，自动转换为 JSON 格式</p>
+            </div>
+
+            <div class="tool-content">
+                <div class="editor-container">
+                    <textarea id="csv-input" placeholder="name,age,city
+张三,20,北京
+李四,25,上海"></textarea>
+                    <textarea id="output" class="output-area" readonly placeholder="生成的 JSON..."></textarea>
+                </div>
+
+                <div class="tool-actions" style="margin-top:20px;">
+                    <button class="btn" onclick="convert()">转换</button>
+                    <button class="btn btn-secondary" onclick="copyResult()">复制</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container"><div class="footer-bottom"><p>&copy; 2026 BeJSON. All rights reserved.</p></div></div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script>
+        function convert() {
+            const input = document.getElementById('csv-input').value;
+            const output = document.getElementById('output');
+            
+            if (!input.trim()) {
+                showToast('请输入 CSV 数据', 'error');
+                return;
+            }
+            
+            try {
+                const result = csvToJson(input);
+                output.value = JSON.stringify(result, null, 2);
+                showToast('转换成功', 'success');
+            } catch (e) {
+                showToast('转换失败: ' + e.message, 'error');
+            }
+        }
+        
+        function csvToJson(csv) {
+            const lines = csv.trim().split('\n');
+            if (lines.length < 2) return [];
+            
+            const headers = lines[0].split(',').map(h => h.trim());
+            const result = [];
+            
+            for (let i = 1; i < lines.length; i++) {
+                const values = lines[i].split(',');
+                const obj = {};
+                
+                headers.forEach((header, index) => {
+                    obj[header] = values[index] ? values[index].trim() : '';
+                });
+                
+                result.push(obj);
+            }
+            
+            return result;
+        }
+        
+        function copyResult() {
+            copyToClipboard(document.getElementById('output').value);
+        }
+    </script>
+</body>
+</html>

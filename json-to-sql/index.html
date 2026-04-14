@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON 转 SQL - 在线 JSON 生成 SQL 语句 - BeJSON</title>
+    <meta name="description" content="免费的JSON转SQL在线工具，输入JSON自动生成INSERT语句。">
+    <meta name="keywords" content="JSON转SQL,json to sql,JSON生成SQL">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo"><a href="/">BeJSON</a></div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/#tools">工具</a></li>
+                    <li><a href="/#code-gen">代码生成</a></li>
+                    <li><a href="/#convert">格式转换</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-page-header">
+                <h1>JSON 转 SQL</h1>
+                <p>输入 JSON，自动生成 INSERT 语句</p>
+            </div>
+
+            <div class="tool-content">
+                <div class="tool-options">
+                    <div class="option-group">
+                        <label>表名：</label>
+                        <input type="text" id="table-name" value="users" style="padding:8px;border:1px solid #ddd;border-radius:6px;">
+                    </div>
+                </div>
+
+                <div class="editor-container">
+                    <textarea id="json-input" placeholder="输入 JSON 数据..."></textarea>
+                    <textarea id="output" class="output-area" readonly placeholder="生成的 SQL..."></textarea>
+                </div>
+
+                <div class="tool-actions" style="margin-top:20px;">
+                    <button class="btn" onclick="convert()">转换</button>
+                    <button class="btn btn-secondary" onclick="copyResult()">复制</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container"><div class="footer-bottom"><p>&copy; 2026 BeJSON. All rights reserved.</p></div></div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script>
+        function convert() {
+            const input = document.getElementById('json-input').value;
+            const tableName = document.getElementById('table-name').value || 'users';
+            const output = document.getElementById('output');
+            
+            if (!input.trim()) {
+                showToast('请输入 JSON 数据', 'error');
+                return;
+            }
+            
+            try {
+                const result = jsonToSql(input, tableName);
+                output.value = result;
+                showToast('转换成功', 'success');
+            } catch (e) {
+                showToast('转换失败: ' + e.message, 'error');
+            }
+        }
+        
+        function copyResult() {
+            copyToClipboard(document.getElementById('output').value);
+        }
+    </script>
+</body>
+</html>

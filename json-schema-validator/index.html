@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Schema 校验 - 在线 JSON Schema 验证器 - BeJSON</title>
+    <meta name="description" content="免费的JSON Schema校验工具，基于JSON Schema标准验证JSON数据。">
+    <meta name="keywords" content="JSON Schema校验,json schema validator">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo"><a href="/">BeJSON</a></div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/#tools">工具</a></li>
+                    <li><a href="/#code-gen">代码生成</a></li>
+                    <li><a href="/#convert">格式转换</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-page-header">
+                <h1>JSON Schema 校验</h1>
+                <p>基于 JSON Schema 标准验证 JSON 数据</p>
+            </div>
+
+            <div class="tool-content">
+                <div class="diff-container">
+                    <div class="tool-input-area">
+                        <label>JSON Schema：</label>
+                        <textarea id="schema" placeholder="输入 JSON Schema..." style="min-height:250px;">{
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "age": { "type": "integer", "minimum": 0 }
+  },
+  "required": ["name"]
+}</textarea>
+                    </div>
+                    <div class="tool-input-area">
+                        <label>要校验的 JSON：</label>
+                        <textarea id="json-input" placeholder="输入 JSON 数据..." style="min-height:250px;">{
+  "name": "张三",
+  "age": 20
+}</textarea>
+                    </div>
+                </div>
+
+                <div class="tool-actions" style="margin-top:20px;">
+                    <button class="btn" onclick="validateSchema()">校验</button>
+                </div>
+
+                <div id="result" class="status" style="margin-top:20px;display:block;"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container"><div class="footer-bottom"><p>&copy; 2026 BeJSON. All rights reserved.</p></div></div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script>
+        function validateSchema() {
+            const schemaStr = document.getElementById('schema').value;
+            const jsonStr = document.getElementById('json-input').value;
+            const result = document.getElementById('result');
+            
+            if (!schemaStr.trim() || !jsonStr.trim()) {
+                showToast('请输入 Schema 和 JSON 数据', 'error');
+                return;
+            }
+            
+            try {
+                const schema = JSON.parse(schemaStr);
+                const data = JSON.parse(jsonStr);
+                
+                const errors = validate(data, schema);
+                
+                if (errors.length === 0) {
+                    result.innerHTML = '<span class="success">✓ 校验通过，数据符合 Schema 规范</span>';
+                    showToast('校验通过', 'success');
+                } else {
+                    result.innerHTML = '<span class="error">校验失败：</span><ul style="margin-top:10px;">' + 
+                        errors.map(e => '<li style="color:#e74c3c;margin:5px 0;">' + e + '</li>').join('') + '</ul>';
+                    showToast('校验失败', 'error');
+                }
+            } catch (e) {
+                result.innerHTML = '<span class="error">错误: ' + e.message + '</span>';
+                showToast('错误: ' + e.message, 'error');
+            }
+        }
+        
+        function validate(data, schema, path = '') {
+            const errors = [];
+            
+            // Type validation
+            if (schema.type) {
+                const actualType = Array.isArray(data) ? 'array' : typeof data;
+                if (actualType === 'number' && schema.type === 'integer') {
+                    if (!Number.isInteger(data)) {
+                        errors.push(path + ': 值必须是整数');
+                    }
+                } else if (schema.type !== actualType && !(actualType === 'null' && schema.type === 'object')) {
+                    errors.push(path + ': 类型必须是 ' + schema.type + '，实际是 ' + actualType);
+                }
+            }
+            
+            // String validations
+            if (schema.minLength && typeof data === 'string' && data.length < schema.minLength) {
+                errors.push(path + ': 字符串长度不能小于 ' + schema.minLength);
+            }
+            if (schema.maxLength && typeof data === 'string' && data.length > schema.maxLength) {
+                errors.push(path + ': 字符串长度不能大于 ' + schema.maxLength);
+            }
+            if (schema.pattern && typeof data === 'string') {
+                const regex = new RegExp(schema.pattern);
+                if (!regex.test(data)) {
+                    errors.push(path + ': 不符合正则表达式 ' + schema.pattern);
+                }
+            }
+            
+            // Number validations
+            if (schema.minimum !== undefined && typeof data === 'number' && data < schema.minimum) {
+                errors.push(path + ': 值不能小于 ' + schema.minimum);
+            }
+            if (schema.maximum !== undefined && typeof data === 'number' && data > schema.maximum) {
+                errors.push(path + ': 值不能大于 ' + schema.maximum);
+            }
+            
+            // Object validations
+            if (schema.properties && typeof data === 'object' && !Array.isArray(data)) {
+                for (const [key, propSchema] of Object.entries(schema.properties)) {
+                    if (data[key] !== undefined) {
+                        errors.push(...validate(data[key], propSchema, path ? path + '.' + key : key));
+                    }
+                }
+            }
+            
+            // Required fields
+            if (schema.required && typeof data === 'object' && !Array.isArray(data)) {
+                for (const required of schema.required) {
+                    if (!(required in data)) {
+                        errors.push(path + ': 缺少必需字段 ' + required);
+                    }
+                }
+            }
+            
+            // Array validations
+            if (schema.items && Array.isArray(data)) {
+                data.forEach((item, index) => {
+                    errors.push(...validate(item, schema.items, path + '[' + index + ']'));
+                });
+            }
+            
+            // Enum validation
+            if (schema.enum && !schema.enum.includes(data)) {
+                errors.push(path + ': 值必须是枚举值之一: ' + schema.enum.join(', '));
+            }
+            
+            return errors;
+        }
+    </script>
+</body>
+</html>

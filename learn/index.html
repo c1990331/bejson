@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON 教程 - BeJSON 学习指南</title>
+    <meta name="description" content="BeJSON JSON教程，学习JSON基础语法、JSON Schema、JSON解析等。免费、最全的JSON教程。">
+    <meta name="keywords" content="JSON教程,JSON入门,JSON语法,JSON Schema,JSON学习">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .learn-hero {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            padding: 80px 0 120px;
+            color: #fff;
+            position: relative;
+        }
+        
+        .learn-hero h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+        }
+        
+        .learn-hero .subtitle {
+            font-size: 20px;
+            opacity: 0.95;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+        
+        .learn-nav {
+            background: #fff;
+            padding: 25px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 70px;
+            z-index: 100;
+        }
+        
+        .learn-nav .container {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+        
+        .learn-nav a {
+            color: #555;
+            text-decoration: none;
+            font-weight: 550;
+            white-space: nowrap;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s;
+            font-size: 15px;
+        }
+        
+        .learn-nav a:hover, .learn-nav a.active {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: #fff;
+        }
+        
+        .learn-content {
+            padding: 50px 0 80px;
+            background: #fafbfc;
+        }
+        
+        .learn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .learn-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s;
+            border: 1px solid #eef0f2;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .learn-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+            border-color: #38ef7d;
+        }
+        
+        .learn-card .tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: #fff;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            width: fit-content;
+            margin-bottom: 15px;
+        }
+        
+        .learn-card h3 {
+            font-size: 22px;
+            color: #1a1a2e;
+            margin-bottom: 12px;
+        }
+        
+        .learn-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 15px;
+            flex: 1;
+        }
+        
+        .learn-card .meta {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #999;
+            font-size: 13px;
+        }
+        
+        .learn-card a.read-more {
+            color: #11998e;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .learn-card a.read-more:hover {
+            color: #0d7a6f;
+        }
+        
+        .section-container {
+            background: #fff;
+            border-radius: 16px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+        
+        .section-container h2 {
+            font-size: 34px;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #38ef7d;
+            display: inline-block;
+        }
+        
+        .section-container h3 {
+            font-size: 22px;
+            color: #2c3e50;
+            margin: 35px 0 18px;
+        }
+        
+        .section-container p {
+            color: #555;
+            line-height: 1.9;
+            font-size: 16px;
+            margin-bottom: 18px;
+        }
+        
+        .section-container ul {
+            margin: 20px 0;
+            padding-left: 25px;
+        }
+        
+        .section-container li {
+            color: #555;
+            line-height: 2;
+            font-size: 15px;
+        }
+        
+        .code-example {
+            background: #1e1e3f;
+            color: #a8b2d1;
+            padding: 25px 30px;
+            border-radius: 12px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            line-height: 1.7;
+            overflow-x: auto;
+            margin: 25px 0;
+            border-left: 4px solid #38ef7d;
+        }
+        
+        .code-example .comment { color: #6a737d; }
+        .code-example .string { color: #9ecbff; }
+        .code-example .number { color: #79c0ff; }
+        .code-example .key { color: #ff7b72; }
+        
+        .info-box {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin: 25px 0;
+        }
+        
+        .info-box strong {
+            color: #166534;
+        }
+        
+        .info-box p {
+            color: #166534;
+            margin: 0;
+        }
+        
+        .warning-box {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin: 25px 0;
+        }
+        
+        .warning-box strong {
+            color: #92400e;
+        }
+        
+        .warning-box p {
+            color: #92400e;
+            margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .learn-hero h1 {
+                font-size: 36px;
+            }
+            
+            .section-container {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="/">BeJSON</a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/#tools">工具</a></li>
+                    <li><a href="/#code-gen">代码生成</a></li>
+                    <li><a href="/#convert">格式转换</a></li>
+                    <li><a href="/#utils">辅助工具</a></li>
+                    <li><a href="/docs/">文档</a></li>
+                    <li><a href="/learn/">教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="learn-hero">
+        <div class="container">
+            <h1>JSON 教程</h1>
+            <p class="subtitle">从零开始学习 JSON，掌握数据交换的核心技能。简单易懂，配有丰富示例。</p>
+        </div>
+    </section>
+
+    <nav class="learn-nav">
+        <div class="container">
+            <a href="#basics">基础入门</a>
+            <a href="#syntax">语法规则</a>
+            <a href="#schema">JSON Schema</a>
+            <a href="#best-practices">最佳实践</a>
+        </div>
+    </nav>
+
+    <main class="learn-content">
+        <div class="container">
+            <div class="section-container" id="basics">
+                <h2>什么是 JSON？</h2>
+                <p>JSON (JavaScript Object Notation) 是一种轻量级的数据交换格式。它基于 JavaScript 语法，但独立于语言，几乎所有编程语言都支持 JSON 的解析和生成。</p>
+                
+                <div class="info-box">
+                    <strong>💡 提示：</strong>
+                    <p>JSON 是现代 Web 开发中最常用的数据格式，API 接口、配置文件、数据存储都能看到它的身影。</p>
+                </div>
+                
+                <h3>为什么使用 JSON？</h3>
+                <ul>
+                    <li><strong>简洁易读</strong> - 人类可读的数据格式</li>
+                    <li><strong>跨语言支持</strong> - JavaScript、Python、Java、Go 等都原生支持</li>
+                    <li><strong>体积小</strong> - 相较于 XML，JSON 更加紧凑</li>
+                    <li><strong>易于解析</strong> - 内置类型系统，直接映射到编程语言对象</li>
+                </ul>
+            </div>
+
+            <div class="section-container" id="syntax">
+                <h2>JSON 语法规则</h2>
+                <p>JSON 的语法非常简单，只有几种基本数据类型和数据结构。</p>
+                
+                <h3>1. 对象 (Object)</h3>
+                <p>用大括号 {} 包裹的键值对集合。</p>
+                <div class="code-example">
+{
+  <span class="key">"name"</span>: <span class="string">"BeJSON"</span>,
+  <span class="key">"version"</span>: <span class="string">"1.0.0"</span>,
+  <span class="key">"isFree"</span>: <span class="number">true</span>
+}
+                </div>
+                
+                <h3>2. 数组 (Array)</h3>
+                <p>用中括号 [] 包裹的有序值列表。</p>
+                <div class="code-example">
+{
+  <span class="key">"tools"</span>: [<span class="string">"格式化"</span>, <span class="string">"校验"</span>, <span class="string">"转换"</span>],
+  <span class="key">"versions"</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+}
+                </div>
+                
+                <h3>3. 基本数据类型</h3>
+                <ul>
+                    <li><strong>字符串</strong> - 必须用双引号包裹："Hello"</li>
+                    <li><strong>数字</strong> - 整数或浮点数：10, 3.14</li>
+                    <li><strong>布尔值</strong> - true / false</li>
+                    <li><strong>空值</strong> - null</li>
+                </ul>
+                
+                <div class="warning-box">
+                    <strong>⚠️ 注意：</strong>
+                    <p>JSON 中键名必须使用双引号，单引号无效。末尾不能有逗号。</p>
+                </div>
+            </div>
+
+            <div class="section-container" id="schema">
+                <h2>JSON Schema</h2>
+                <p>JSON Schema 是用于描述 JSON 数据结构的规范，可以校验 JSON 是否符合预期格式。</p>
+                
+                <h3>基本结构</h3>
+                <div class="code-example">
+{
+  <span class="key">"$schema"</span>: <span class="string">"http://json-schema.org/draft-07/schema#"</span>,
+  <span class="key">"type"</span>: <span class="string">"object"</span>,
+  <span class="key">"properties"</span>: {
+    <span class="key">"name"</span>: {
+      <span class="key">"type"</span>: <span class="string">"string"</span>
+    },
+    <span class="key">"age"</span>: {
+      <span class="key">"type"</span>: <span class="string">"integer"</span>,
+      <span class="key">"minimum"</span>: <span class="number">0</span>
+    }
+  },
+  <span class="key">"required"</span>: [<span class="string">"name"</span>]
+}
+                </div>
+                
+                <h3>常用关键字</h3>
+                <ul>
+                    <li><strong>type</strong> - 数据类型：string, number, integer, boolean, object, array, null</li>
+                    <li><strong>properties</strong> - 定义对象属性</li>
+                    <li><strong>required</strong> - 必需字段数组</li>
+                    <li><strong>minimum / maximum</strong> - 数值范围限制</li>
+                    <li><strong>minLength / maxLength</strong> - 字符串长度限制</li>
+                    <li><strong>enum</strong> - 枚举值限制</li>
+                    <li><strong>pattern</strong> - 正则表达式匹配</li>
+                </ul>
+            </div>
+
+            <div class="section-container" id="best-practices">
+                <h2>最佳实践</h2>
+                
+                <h3>1. 使用有意义的键名</h3>
+                <div class="code-example">
+<span class="comment">// ✅ 好的命名</span>
+{ <span class="key">"userName"</span>: <span class="string">"Tom"</span>, <span class="key">"createdAt"</span>: <span class="string">"2024-01-01"</span> }
+
+<span class="comment">// ❌ 避免</span>
+{ <span class="key">"a"</span>: <span class="string">"Tom"</span>, <span class="key">"c"</span>: <span class="string">"2024-01-01"</span> }
+                </div>
+                
+                <h3>2. 保持结构一致性</h3>
+                <div class="code-example">
+<span class="comment">// ✅ 数组元素类型一致</span>
+{ <span class="key">"users"</span>: [{<span class="key">"name"</span>: <span class="string">"Tom"</span>}, {<span class="key">"name"</span>: <span class="string">"Jerry"</span>}] }
+
+<span class="comment">// ❌ 避免混合类型</span>
+{ <span class="key">"items"</span>: [<span class="string">"a"</span>, <span class="number">1</span>, {<span class="key">"x"</span>: <span class="number">1</span>}] }
+                </div>
+                
+                <h3>3. 合理使用嵌套</h3>
+                <div class="code-example">
+<span class="comment">// ✅ 适当的嵌套层次</span>
+{
+  <span class="key">"user"</span>: {
+    <span class="key">"profile"</span>: { <span class="key">"name"</span>: <span class="string">"Tom"</span> },
+    <span class="key">"settings"</span>: { <span class="key">"theme"</span>: <span class="string">"dark"</span> }
+  }
+}
+                </div>
+                
+                <h3>4. 使用 JSON 工具验证</h3>
+                <p>在发送或解析 JSON 数据前，使用 <a href="/json-validator/" style="color:#11998e;">JSON 校验工具</a> 验证格式正确性，避免运行时错误。</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>工具</h4>
+                    <ul>
+                        <li><a href="/json-formatter/">JSON 格式化</a></li>
+                        <li><a href="/json-validator/">JSON 校验</a></li>
+                        <li><a href="/json-compressor/">JSON 压缩</a></li>
+                        <li><a href="/json-tree-view/">JSON 树视图</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>代码生成</h4>
+                    <ul>
+                        <li><a href="/json-to-java/">JSON 转 Java</a></li>
+                        <li><a href="/json-to-go/">JSON 转 Go</a></li>
+                        <li><a href="/json-to-python/">JSON 转 Python</a></li>
+                        <li><a href="/json-to-typescript/">JSON 转 TypeScript</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>学习</h4>
+                    <ul>
+                        <li><a href="/docs/">文档</a></li>
+                        <li><a href="/learn/">教程</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 BeJSON. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

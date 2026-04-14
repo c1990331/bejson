@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON 转 Ruby - 在线生成 Ruby Hash - BeJSON</title>
+    <meta name="description" content="免费的JSON转Ruby在线工具，输入JSON生成Ruby Hash。">
+    <meta name="keywords" name="JSON转Ruby,json to ruby">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo"><a href="/">BeJSON</a></div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/#tools">工具</a></li>
+                    <li><a href="/#code-gen">代码生成</a></li>
+                    <li><a href="/#convert">格式转换</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-page-header">
+                <h1>JSON 转 Ruby</h1>
+                <p>输入 JSON，生成 Ruby Hash</p>
+            </div>
+
+            <div class="tool-content">
+                <div class="tool-options">
+                    <div class="option-group">
+                        <label>变量名：</label>
+                        <input type="text" id="var-name" value="data" style="padding:8px;border:1px solid #ddd;border-radius:6px;">
+                    </div>
+                </div>
+
+                <div class="editor-container">
+                    <textarea id="json-input" placeholder="输入 JSON 数据..."></textarea>
+                    <textarea id="output" class="output-area" readonly placeholder="生成的 Ruby 代码..."></textarea>
+                </div>
+
+                <div class="tool-actions" style="margin-top:20px;">
+                    <button class="btn" onclick="convert()">转换</button>
+                    <button class="btn btn-secondary" onclick="copyResult()">复制</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container"><div class="footer-bottom"><p>&copy; 2026 BeJSON. All rights reserved.</p></div></div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script>
+        function convert() {
+            const input = document.getElementById('json-input').value;
+            const varName = document.getElementById('var-name').value || 'data';
+            const output = document.getElementById('output');
+            
+            if (!input.trim()) {
+                showToast('请输入 JSON 数据', 'error');
+                return;
+            }
+            
+            try {
+                const parsed = JSON.parse(input);
+                const result = jsonToRuby(parsed, varName);
+                output.value = result;
+                showToast('转换成功', 'success');
+            } catch (e) {
+                showToast('转换失败: ' + e.message, 'error');
+            }
+        }
+        
+        function jsonToRuby(obj, varName, indent = 0) {
+            const spaces = '  '.repeat(indent);
+            
+            if (obj === null) return 'nil';
+            if (typeof obj === 'string') return '"' + obj + '"';
+            if (typeof obj === 'number') return String(obj);
+            if (typeof obj === 'boolean') return obj ? 'true' : 'false';
+            
+            if (Array.isArray(obj)) {
+                if (obj.length === 0) return '[]';
+                const items = obj.map(item => jsonToRuby(item, varName, indent + 1));
+                return '[\n' + spaces + '  ' + items.join(',\n' + spaces + '  ') + '\n' + spaces + ']';
+            }
+            
+            if (typeof obj === 'object') {
+                const keys = Object.keys(obj);
+                if (keys.length === 0) return '{}';
+                const pairs = keys.map(key => {
+                    const value = jsonToRuby(obj[key], varName, indent + 1);
+                    return ':' + key + ' => ' + value;
+                });
+                if (indent === 0) {
+                    return varName + ' = {\n  ' + pairs.join(',\n  ') + '\n}';
+                }
+                return '{\n' + spaces + '  ' + pairs.join(',\n' + spaces + '  ') + '\n' + spaces + '}';
+            }
+            
+            return 'nil';
+        }
+        
+        function copyResult() {
+            copyToClipboard(document.getElementById('output').value);
+        }
+    </script>
+</body>
+</html>

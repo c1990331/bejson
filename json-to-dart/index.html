@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON 转 Dart - 在线生成 Dart Model - BeJSON</title>
+    <meta name="description" content="免费的JSON转Dart在线工具，输入JSON自动生成Flutter Dart模型类。">
+    <meta name="keywords" content="JSON转Dart,json to dart,Flutter JSON">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo"><a href="/">BeJSON</a></div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/#tools">工具</a></li>
+                    <li><a href="/#code-gen">代码生成</a></li>
+                    <li><a href="/#convert">格式转换</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-page-header">
+                <h1>JSON 转 Dart</h1>
+                <p>输入 JSON，自动生成 Flutter Dart Model</p>
+            </div>
+
+            <div class="tool-content">
+                <div class="tool-options">
+                    <div class="option-group">
+                        <label>类名：</label>
+                        <input type="text" id="class-name" value="User" style="padding:8px;border:1px solid #ddd;border-radius:6px;">
+                    </div>
+                </div>
+
+                <div class="editor-container">
+                    <textarea id="json-input" placeholder="输入 JSON 数据..."></textarea>
+                    <textarea id="output" class="output-area" readonly placeholder="生成的 Dart 代码..."></textarea>
+                </div>
+
+                <div class="tool-actions" style="margin-top:20px;">
+                    <button class="btn" onclick="convert()">转换</button>
+                    <button class="btn btn-secondary" onclick="copyResult()">复制</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container"><div class="footer-bottom"><p>&copy; 2026 BeJSON. All rights reserved.</p></div></div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script>
+        function convert() {
+            const input = document.getElementById('json-input').value;
+            const className = document.getElementById('class-name').value || 'User';
+            const output = document.getElementById('output');
+            
+            if (!input.trim()) {
+                showToast('请输入 JSON 数据', 'error');
+                return;
+            }
+            
+            try {
+                const parsed = JSON.parse(input);
+                const result = generateDart(parsed, className);
+                output.value = result;
+                showToast('转换成功', 'success');
+            } catch (e) {
+                showToast('转换失败: ' + e.message, 'error');
+            }
+        }
+        
+        function generateDart(obj, name) {
+            function getType(value) {
+                if (value === null) return 'dynamic';
+                if (typeof value === 'string') return 'String';
+                if (typeof value === 'number') return 'num';
+                if (typeof value === 'boolean') return 'bool';
+                if (Array.isArray(value)) {
+                    if (value.length === 0) return 'List<dynamic>';
+                    return 'List<' + getType(value[0]) + '>';
+                }
+                if (typeof value === 'object') return name;
+                return 'dynamic';
+            }
+            
+            let code = `class ${name} {\n`;
+            code += `    ${name}({\n`;
+            
+            for (const [key, value] of Object.entries(obj)) {
+                const type = getType(value);
+                code += `        this.${key},\n`;
+            }
+            
+            code += `    });\n\n`;
+            
+            for (const [key, value] of Object.entries(obj)) {
+                const type = getType(value);
+                code += `    final ${type} ${key};\n`;
+            }
+            
+            code += `\n    factory ${name}.fromJson(Map<String, dynamic> json) {\n`;
+            code += `        return ${name}(\n`;
+            for (const [key] of Object.entries(obj)) {
+                code += `            ${key}: json['${key}'],\n`;
+            }
+            code += `        );\n    }\n\n`;
+            
+            code += `    Map<String, dynamic> toJson() {\n`;
+            code += `        return {\n`;
+            for (const [key] of Object.entries(obj)) {
+                code += `            '${key}': ${key},\n`;
+            }
+            code += `        };\n    }\n`;
+            
+            code += '}\n';
+            return code;
+        }
+        
+        function copyResult() {
+            copyToClipboard(document.getElementById('output').value);
+        }
+    </script>
+</body>
+</html>

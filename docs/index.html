@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeJSON 文档 - 免费在线JSON工具使用指南</title>
+    <meta name="description" content="BeJSON官方文档，了解如何使用JSON格式化、校验、转换等工具。免费、无需注册、浏览器直接使用。">
+    <meta name="keywords" content="JSON文档,JSON教程,JSON使用指南,BeJSON文档">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .docs-hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 80px 0 180px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .docs-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/></svg>') repeat;
+            background-size: 200px 200px;
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-200px); }
+        }
+        
+        .docs-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .docs-hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #a8c0ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .docs-hero .subtitle {
+            font-size: 22px;
+            opacity: 0.9;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+        
+        .docs-nav {
+            background: #fff;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 70px;
+            z-index: 100;
+        }
+        
+        .docs-nav .container {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+        
+        .docs-nav a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            white-space: nowrap;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+        
+        .docs-nav a:hover, .docs-nav a.active {
+            background: #3498db;
+            color: #fff;
+        }
+        
+        .docs-content {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+        
+        .docs-section {
+            background: #fff;
+            border-radius: 16px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+        }
+        
+        .docs-section h2 {
+            font-size: 36px;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+            display: inline-block;
+        }
+        
+        .docs-section h3 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin: 35px 0 20px;
+        }
+        
+        .docs-section p {
+            color: #555;
+            line-height: 1.9;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .docs-section ul {
+            margin: 20px 0;
+            padding-left: 25px;
+        }
+        
+        .docs-section li {
+            color: #555;
+            line-height: 2;
+            font-size: 15px;
+        }
+        
+        .docs-section li strong {
+            color: #2c3e50;
+        }
+        
+        .code-block {
+            background: #1e1e3f;
+            color: #a8b2d1;
+            padding: 25px 30px;
+            border-radius: 12px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            overflow-x: auto;
+            margin: 25px 0;
+            border-left: 4px solid #3498db;
+        }
+        
+        .code-block .comment { color: #6a737d; }
+        .code-block .string { color: #9ecbff; }
+        .code-block .number { color: #79c0ff; }
+        .code-block .key { color: #ff7b72; }
+        
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 16px;
+            padding: 35px;
+            transition: all 0.3s;
+            border: 1px solid #e1e5eb;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card .icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h4 {
+            font-size: 20px;
+            color: #1a1a2e;
+            margin-bottom: 12px;
+        }
+        
+        .feature-card p {
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+        }
+        
+        .toc {
+            background: #f1f5f9;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .toc h4 {
+            font-size: 18px;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .toc li {
+            margin-bottom: 12px;
+        }
+        
+        .toc a {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+        
+        .toc a:hover {
+            color: #1a6fa3;
+        }
+        
+        .cta-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            padding: 80px 50px 100px;
+            text-align: center;
+            color: #fff;
+            margin-top: 50px;
+        }
+        
+        .cta-box h3 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        
+        .cta-box p {
+            font-size: 18px;
+            opacity: 0.9;
+            color: #fff;
+        }
+        
+        .cta-box .btn {
+            margin-top: 65px;
+            padding: 15px 40px;
+            font-size: 18px;
+            background: #fff;
+            color: #667eea;
+        }
+        
+        .cta-box .btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .docs-hero h1 {
+                font-size: 36px;
+            }
+            
+            .docs-section {
+                padding: 30px;
+            }
+            
+            .docs-section h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="/">BeJSON</a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/#tools">工具</a></li>
+                    <li><a href="/#code-gen">代码生成</a></li>
+                    <li><a href="/#convert">格式转换</a></li>
+                    <li><a href="/#utils">辅助工具</a></li>
+                    <li><a href="/docs/">文档</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="docs-hero">
+        <div class="container">
+            <h1>BeJSON 文档中心</h1>
+            <p class="subtitle">开发者必备的在线 JSON 处理工具集，帮助您快速完成 JSON 格式化、校验、转换等各种任务。</p>
+        </div>
+    </section>
+
+    <nav class="docs-nav">
+        <div class="container">
+            <a href="#intro">简介</a>
+            <a href="#features">核心功能</a>
+            <a href="#tools">工具列表</a>
+            <a href="#code-gen">代码生成</a>
+            <a href="#faq">常见问题</a>
+        </div>
+    </nav>
+
+    <main class="docs-content">
+        <div class="container">
+            <div class="docs-section" id="intro">
+                <h2>关于 BeJSON</h2>
+                <p>BeJSON 是一个免费的在线 JSON 处理工具网站，为开发者提供 JSON 格式化、校验、压缩、转换等常用功能。无需下载安装，无需注册，所有功能直接在浏览器中完成。</p>
+                
+                <div class="toc">
+                    <h4>快速导航</h4>
+                    <ul>
+                        <li><a href="#json-formatter">JSON 格式化</a> - 智能缩进和语法高亮</li>
+                        <li><a href="#json-validator">JSON 校验</a> - 语法检查和错误定位</li>
+                        <li><a href="#json-to-code">代码生成</a> - JSON 转 Java/Go/Python 等</li>
+                        <li><a href="#json-convert">格式转换</a> - JSON 与 XML/YAML/CSV 互转</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="docs-section" id="features">
+                <h2>核心功能</h2>
+                <div class="feature-cards">
+                    <div class="feature-card">
+                        <div class="icon">🎨</div>
+                        <h4>JSON 格式化</h4>
+                        <p>支持自定义缩进（2/4/Tab），智能颜色高亮，语法错误实时提示</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">✅</div>
+                        <h4>JSON 校验</h4>
+                        <p>完整的 JSON 语法校验，精准定位错误位置，提供修复建议</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📦</div>
+                        <h4>JSON 压缩</h4>
+                        <p>一键压缩 JSON，去除多余空格和换行，适合数据传输场景</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔄</div>
+                        <h4>格式转换</h4>
+                        <p>JSON 与 Java、Go、Python、TypeScript 等多种语言互转</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🌐</div>
+                        <h4>跨格式转换</h4>
+                        <p>支持 JSON 与 XML、YAML、CSV、SQL 等格式相互转换</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔒</div>
+                        <h4>安全可靠</h4>
+                        <p>所有处理在浏览器端完成，数据不上传服务器，保护隐私安全</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="docs-section" id="tools">
+                <h2>工具列表</h2>
+                <h3 id="json-formatter">📝 JSON 格式化</h3>
+                <p>将凌乱的 JSON 字符串格式化为整洁易读的形式。支持自定义缩进量，自动检测并高亮语法错误。</p>
+                <div class="code-block">
+{
+  <span class="key">"name"</span>: <span class="string">"BeJSON"</span>,
+  <span class="key">"version"</span>: <span class="string">"1.0.0"</span>,
+  <span class="key">"features"</span>: [
+    <span class="string">"格式化"</span>,
+    <span class="string">"校验"</span>,
+    <span class="string">"转换"</span>
+  ]
+}
+                </div>
+                
+                <h3 id="json-validator">🛡️ JSON 校验</h3>
+                <p>验证 JSON 字符串的语法正确性，精准定位错误位置，并提供友好的错误提示信息。</p>
+                
+                <h3 id="json-compressor">📋 JSON 压缩</h3>
+                <p>移除 JSON 中的所有多余空格、换行和注释，生成最小化的 JSON 字符串，适合网络传输。</p>
+                
+                <h3 id="json-tree-view">🌳 JSON 树视图</h3>
+                <p>以可视化的树形结构展示 JSON 数据，支持节点展开/折叠，方便理解和分析复杂的 JSON 结构。</p>
+                
+                <h3 id="json-diff">🔍 JSON 差异对比</h3>
+                <p>比较两个 JSON 对象的差异，高亮显示新增、删除和修改的内容，非常适合 API 调试和配置对比。</p>
+            </div>
+
+            <div class="docs-section" id="code-gen">
+                <h2>代码生成</h2>
+                <p>将 JSON 数据转换为各种编程语言的代码结构，省去手动编写实体类的麻烦。</p>
+                
+                <h3 id="json-to-code">支持的编程语言</h3>
+                <ul>
+                    <li><strong>Java</strong> - 生成 POJO 实体类，支持 Lombok 注解</li>
+                    <li><strong>Go</strong> - 生成 struct 定义</li>
+                    <li><strong>Python</strong> - 生成 dataclass 或 dict</li>
+                    <li><strong>TypeScript</strong> - 生成 interface 或 type</li>
+                    <li><strong>C#</strong> - 生成 Class 或 Record</li>
+                    <li><strong>PHP</strong> - 生成数组或对象</li>
+                    <li><strong>Swift</strong> - 生成 Struct 或 Codable</li>
+                    <li><strong>Kotlin</strong> - 生成 Data Class</li>
+                </ul>
+                
+                <h3>示例：JSON 转 Java</h3>
+                <div class="code-block">
+<span class="comment">// 输入 JSON</span>
+{
+  <span class="key">"id"</span>: 1,
+  <span class="key">"name"</span>: <span class="string">"BeJSON"</span>,
+  <span class="key">"enabled"</span>: true
+}
+
+<span class="comment">// 生成的 Java 代码</span>
+<span class="key">public class</span> User {
+    <span class="key">private</span> Integer id;
+    <span class="key">private</span> String name;
+    <span class="key">private</span> Boolean enabled;
+    
+    <span class="comment">// Getters and Setters...</span>
+}
+                </div>
+            </div>
+
+            <div class="docs-section" id="json-convert">
+                <h2>格式转换</h2>
+                <p>JSON 与其他常见数据格式的相互转换，满足不同场景需求。</p>
+                
+                <h3>数据格式互转</h3>
+                <ul>
+                    <li><strong>JSON ↔ XML</strong> - 适合 Java 生态和配置文件</li>
+                    <li><strong>JSON ↔ YAML</strong> - 适合配置文件和 DevOps</li>
+                    <li><strong>JSON ↔ CSV</strong> - 适合数据分析和 Excel</li>
+                    <li><strong>JSON ↔ SQL</strong> - 生成 INSERT 语句，方便数据库导入</li>
+                    <li><strong>JSON ↔ Properties</strong> - Java 配置文件格式</li>
+                    <li><strong>JSON ↔ TOML</strong> - 现代配置文件格式</li>
+                </ul>
+            </div>
+
+            <div class="docs-section" id="faq">
+                <h2>常见问题</h2>
+                
+                <h3>Q: BeJSON 是否收费？</h3>
+                <p>BeJSON 完全免费，无需注册，无广告，无使用限制。</p>
+                
+                <h3>Q: 我的数据安全吗？</h3>
+                <p>非常安全！所有 JSON 处理都在您的浏览器中完成，数据不会上传到任何服务器。</p>
+                
+                <h3>Q: 支持批量处理吗？</h3>
+                <p>目前支持单次处理，如需批量处理，建议使用我们的 API 或本地工具。</p>
+                
+                <h3>Q: 可以离线使用吗？</h3>
+                <p>可以！将页面添加到书签或保存为本地 HTML 文件即可离线使用（部分功能可能受限）。</p>
+                
+                <h3>Q: 如何报告问题或提出建议？</h3>
+                <p>欢迎通过网站底部联系方式与我们沟通，我们会认真听取每一条建议。</p>
+            </div>
+
+            <div class="cta-box">
+                <h3>开始使用 BeJSON</h3>
+                <p>免费、无需注册、浏览器直接使用</p>
+                <a href="/" class="btn" style="margin-top: 65px !important;">立即体验</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>工具</h4>
+                    <ul>
+                        <li><a href="/json-formatter/">JSON 格式化</a></li>
+                        <li><a href="/json-validator/">JSON 校验</a></li>
+                        <li><a href="/json-compressor/">JSON 压缩</a></li>
+                        <li><a href="/json-tree-view/">JSON 树视图</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>代码生成</h4>
+                    <ul>
+                        <li><a href="/json-to-java/">JSON 转 Java</a></li>
+                        <li><a href="/json-to-go/">JSON 转 Go</a></li>
+                        <li><a href="/json-to-python/">JSON 转 Python</a></li>
+                        <li><a href="/json-to-typescript/">JSON 转 TypeScript</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>格式转换</h4>
+                    <ul>
+                        <li><a href="/json-to-xml/">JSON 转 XML</a></li>
+                        <li><a href="/json-to-yaml/">JSON 转 YAML</a></li>
+                        <li><a href="/json-to-sql/">JSON 转 SQL</a></li>
+                        <li><a href="/json-to-csv/">JSON 转 CSV</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>学习</h4>
+                    <ul>
+                        <li><a href="/docs/">文档</a></li>
+                        <li><a href="/learn/json-basics/">JSON 入门</a></li>
+                        <li><a href="/learn/json-schema/">JSON Schema</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 BeJSON. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>

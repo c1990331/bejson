@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON 格式化 | JSON 校验 | 在线 JSON 工具 - BeJSON</title>
+    <meta name="description" content="BeJSON提供专业的JSON在线处理工具，包括JSON格式化、校验、压缩、代码生成等，无需下载注册，浏览器直接使用。">
+    <meta name="keywords" content="JSON格式化,JSON校验,JSON压缩,在线JSON工具,JSON编辑器">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="/">BeJSON</a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#tools">工具</a></li>
+                    <li><a href="#code-gen">代码生成</a></li>
+                    <li><a href="#convert">格式转换</a></li>
+                    <li><a href="#utils">辅助工具</a></li>
+                    <li><a href="/learn/">教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>开发者必备的在线 JSON 处理工具</h1>
+                <p class="subtitle">免费、无需注册、浏览器直接使用</p>
+                
+                <div class="quick-tool">
+                    <div class="tool-header">
+                        <h2>JSON 格式化</h2>
+                        <div class="tool-actions">
+                            <button class="btn" onclick="formatJson()">格式化</button>
+                            <button class="btn btn-secondary" onclick="compressJson()">压缩</button>
+                            <button class="btn btn-secondary" onclick="validateJson()">校验</button>
+                        </div>
+                    </div>
+                    <div class="editor-container">
+                        <textarea id="json-input" placeholder="在此粘贴您的 JSON 数据..."></textarea>
+                        <div id="json-output" class="output-area" style="display:none;"></div>
+                    </div>
+                    <div id="status-message" class="status"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools" class="tools-section">
+            <div class="container">
+                <h2 class="section-title">核心工具</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <h3><a href="/json-formatter/">JSON 格式化</a></h3>
+                        <p>智能缩进、换行、颜色高亮</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-validator/">JSON 校验</a></h3>
+                        <p>语法检查、错误定位、修复建议</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-compressor/">JSON 压缩</a></h3>
+                        <p>去除空格、换行、注释</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-beautifier/">JSON 美化</a></h3>
+                        <p>格式化 + 高亮 + 缩进</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-editor/">JSON 编辑器</a></h3>
+                        <p>在线代码编辑器、实时预览</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-tree-view/">JSON 树视图</a></h3>
+                        <p>可视化树形结构、展开/折叠</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-schema-validator/">JSON Schema 校验</a></h3>
+                        <p>基于 JSON Schema 标准校验</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-diff/">JSON 差异对比</a></h3>
+                        <p>两个 JSON 的区别高亮显示</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="code-gen" class="tools-section">
+            <div class="container">
+                <h2 class="section-title">代码生成</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <h3><a href="/json-to-typescript/">JSON → TypeScript</a></h3>
+                        <p>生成 TS 接口定义</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-to-javascript/">JSON → JavaScript</a></h3>
+                        <p>生成 JS 对象结构</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-to-java/">JSON → Java</a></h3>
+                        <p>生成 Java 实体类</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-to-go/">JSON → Go</a></h3>
+                        <p>生成 Go struct</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-to-python/">JSON → Python</a></h3>
+                        <p>生成 Python dataclass</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-to-csharp/">JSON → C#</a></h3>
+                        <p>生成 C# Class</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-to-php/">JSON → PHP</a></h3>
+                        <p>生成 PHP 数组</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-to-swift/">JSON → Swift</a></h3>
+                        <p>生成 Swift Struct</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-to-kotlin/">JSON → Kotlin</a></h3>
+                        <p>生成 Kotlin Data Class</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-to-dart/">JSON → Dart</a></h3>
+                        <p>生成 Dart Model</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-to-ruby/">JSON → Ruby</a></h3>
+                        <p>生成 Ruby Hash</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-to-cpp/">JSON → C++</a></h3>
+                        <p>生成 C++ Struct</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="convert" class="tools-section">
+            <div class="container">
+                <h2 class="section-title">格式转换</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <h3><a href="/json-to-xml/">JSON → XML</a></h3>
+                        <p>转换为 XML 格式</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-to-yaml/">JSON → YAML</a></h3>
+                        <p>转换为 YAML 格式</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-to-csv/">JSON → CSV</a></h3>
+                        <p>转换为 CSV 格式</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-to-sql/">JSON → SQL</a></h3>
+                        <p>生成 INSERT 语句</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-to-toml/">JSON → TOML</a></h3>
+                        <p>转换为 TOML 格式</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/json-to-properties/">JSON → Properties</a></h3>
+                        <p>转换为 Java Properties</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/xml-to-json/">XML → JSON</a></h3>
+                        <p>XML 转换为 JSON</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/yaml-to-json/">YAML → JSON</a></h3>
+                        <p>YAML 转换为 JSON</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/csv-to-json/">CSV → JSON</a></h3>
+                        <p>CSV 转换为 JSON</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="utils" class="tools-section">
+            <div class="container">
+                <h2 class="section-title">辅助工具</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <h3><a href="/unicode-converter/">Unicode 转换</a></h3>
+                        <p>中文与 Unicode 互转</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/url-encoder/">URL 编码</a></h3>
+                        <p>URL 编码/解码</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/timestamp-converter/">时间戳转换</a></h3>
+                        <p>Unix 时间戳 ↔ 日期</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/hash-generator/">哈希生成</a></h3>
+                        <p>MD5/SHA 加密</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/base64-converter/">Base64 编解码</a></h3>
+                        <p>Base64 编码转换</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3><a href="/color-converter/">颜色转换</a></h3>
+                        <p>HEX/RGB/HSL 互转</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="container">
+                <h2 class="section-title">为什么选择 BeJSON？</h2>
+                <div class="features-grid">
+                    <div class="feature">
+                        <div class="feature-icon">🚀</div>
+                        <h3>快速响应</h3>
+                        <p>所有处理在浏览器端完成，无需服务器传输</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🔒</div>
+                        <h3>安全可靠</h3>
+                        <p>数据不上传服务器，保护您的隐私安全</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">📱</div>
+                        <h3>响应式设计</h3>
+                        <p>完美支持电脑、手机、平板各种设备</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🎯</div>
+                        <h3>完全免费</h3>
+                        <p>无需注册、无广告、无限次使用</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>工具</h4>
+                    <ul>
+                        <li><a href="/json-formatter/">JSON 格式化</a></li>
+                        <li><a href="/json-validator/">JSON 校验</a></li>
+                        <li><a href="/json-compressor/">JSON 压缩</a></li>
+                        <li><a href="/json-tree-view/">JSON 树视图</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>代码生成</h4>
+                    <ul>
+                        <li><a href="/json-to-java/">JSON 转 Java</a></li>
+                        <li><a href="/json-to-go/">JSON 转 Go</a></li>
+                        <li><a href="/json-to-python/">JSON 转 Python</a></li>
+                        <li><a href="/json-to-typescript/">JSON 转 TypeScript</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>格式转换</h4>
+                    <ul>
+                        <li><a href="/json-to-xml/">JSON 转 XML</a></li>
+                        <li><a href="/json-to-yaml/">JSON 转 YAML</a></li>
+                        <li><a href="/json-to-sql/">JSON 转 SQL</a></li>
+                        <li><a href="/json-to-csv/">JSON 转 CSV</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>学习</h4>
+                    <ul>
+                        <li><a href="/learn/json-basics/">JSON 入门</a></li>
+                        <li><a href="/learn/json-schema/">JSON Schema</a></li>
+                        <li><a href="/docs/">文档</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 BeJSON. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

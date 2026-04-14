@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YAML 转 JSON - 在线 YAML 转换为 JSON - BeJSON</title>
+    <meta name="description" content="免费的YAML转JSON在线工具，输入YAML自动转换为JSON格式。">
+    <meta name="keywords" content="YAML转JSON,yaml to json,YAML转换JSON">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo"><a href="/">BeJSON</a></div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/#tools">工具</a></li>
+                    <li><a href="/#code-gen">代码生成</a></li>
+                    <li><a href="/#convert">格式转换</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-page-header">
+                <h1>YAML 转 JSON</h1>
+                <p>输入 YAML，自动转换为 JSON 格式</p>
+            </div>
+
+            <div class="tool-content">
+                <div class="editor-container">
+                    <textarea id="yaml-input" placeholder="输入 YAML 数据..."></textarea>
+                    <textarea id="output" class="output-area" readonly placeholder="生成的 JSON..."></textarea>
+                </div>
+
+                <div class="tool-actions" style="margin-top:20px;">
+                    <button class="btn" onclick="convert()">转换</button>
+                    <button class="btn btn-secondary" onclick="copyResult()">复制</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container"><div class="footer-bottom"><p>&copy; 2026 BeJSON. All rights reserved.</p></div></div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script>
+        function convert() {
+            const input = document.getElementById('yaml-input').value;
+            const output = document.getElementById('output');
+            
+            if (!input.trim()) {
+                showToast('请输入 YAML 数据', 'error');
+                return;
+            }
+            
+            try {
+                const result = yamlToJson(input);
+                output.value = JSON.stringify(result, null, 2);
+                showToast('转换成功', 'success');
+            } catch (e) {
+                showToast('转换失败: ' + e.message, 'error');
+            }
+        }
+        
+        // Simple YAML parser
+        function yamlToJson(yaml) {
+            const lines = yaml.split('\n');
+            let result = {};
+            let stack = [{obj: result, indent: -1}];
+            
+            for (let line of lines) {
+                if (!line.trim() || line.trim().startsWith('#')) continue;
+                
+                const indent = line.search(/\S/);
+                const content = line.trim();
+                
+                // Pop stack to correct level
+                while (stack.length > 1 && stack[stack.length - 1].indent >= indent) {
+                    stack.pop();
+                }
+                
+                const current = stack[stack.length - 1].obj;
+                
+                // Key-value pair
+                if (content.includes(':')) {
+                    const colonIndex = content.indexOf(':');
+                    let key = content.substring(0, colonIndex).trim();
+                    let value = content.substring(colonIndex + 1).trim();
+                    
+                    if (value === '') {
+                        // Object or array
+                        current[key] = {};
+                        stack.push({obj: current[key], indent: indent});
+                    } else {
+                        // Scalar value
+                        current[key] = parseValue(value);
+                    }
+                } else if (content.startsWith('- ')) {
+                    // Array item
+                    const value = content.substring(2).trim();
+                    if (!Array.isArray(current)) {
+                        // First array item - convert to array
+                        const arr = [];
+                        const lastKey = Object.keys(current).pop();
+                        if (lastKey) {
+                            current[lastKey] = arr;
+                        }
+                    }
+                    if (Array.isArray(current)) {
+                        current.push(parseValue(value));
+                    }
+                }
+            }
+            
+            return result;
+        }
+        
+        function parseValue(value) {
+            if (value === 'true') return true;
+            if (value === 'false') return false;
+            if (value === 'null' || value === '~') return null;
+            if (!isNaN(value) && value !== '') return Number(value);
+            return value.replace(/^["']|["']$/g, '');
+        }
+        
+        function copyResult() {
+            copyToClipboard(document.getElementById('output').value);
+        }
+    </script>
+</body>
+</html>

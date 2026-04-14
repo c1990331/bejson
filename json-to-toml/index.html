@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON 转 TOML - 在线 JSON 转换为 TOML - BeJSON</title>
+    <meta name="description" content="免费的JSON转TOML在线工具，输入JSON自动转换为TOML格式。">
+    <meta name="keywords" name="JSON转TOML,json to toml">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo"><a href="/">BeJSON</a></div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/#tools">工具</a></li>
+                    <li><a href="/#code-gen">代码生成</a></li>
+                    <li><a href="/#convert">格式转换</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-page-header">
+                <h1>JSON 转 TOML</h1>
+                <p>输入 JSON，自动转换为 TOML 格式</p>
+            </div>
+
+            <div class="tool-content">
+                <div class="editor-container">
+                    <textarea id="json-input" placeholder="输入 JSON 数据..."></textarea>
+                    <textarea id="output" class="output-area" readonly placeholder="生成的 TOML..."></textarea>
+                </div>
+
+                <div class="tool-actions" style="margin-top:20px;">
+                    <button class="btn" onclick="convert()">转换</button>
+                    <button class="btn btn-secondary" onclick="copyResult()">复制</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container"><div class="footer-bottom"><p>&copy; 2026 BeJSON. All rights reserved.</p></div></div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script>
+        function convert() {
+            const input = document.getElementById('json-input').value;
+            const output = document.getElementById('output');
+            
+            if (!input.trim()) {
+                showToast('请输入 JSON 数据', 'error');
+                return;
+            }
+            
+            try {
+                const result = jsonToToml(input);
+                output.value = result;
+                showToast('转换成功', 'success');
+            } catch (e) {
+                showToast('转换失败: ' + e.message, 'error');
+            }
+        }
+        
+        function jsonToToml(json) {
+            const obj = JSON.parse(json);
+            
+            function convert(obj, prefix = '') {
+                let toml = '';
+                
+                if (Array.isArray(obj)) {
+                    for (let i = 0; i < obj.length; i++) {
+                        if (typeof obj[i] === 'object' && obj[i] !== null) {
+                            toml += convert(obj[i], prefix + (prefix ? '.' : '') + (i + 1));
+                        } else {
+                            toml += prefix + (prefix ? '.' : '') + (i + 1) + ' = ' + tomlValue(obj[i]) + '\n';
+                        }
+                    }
+                } else if (typeof obj === 'object' && obj !== null) {
+                    for (const [key, value] of Object.entries(obj)) {
+                        if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+                            toml += '[' + (prefix ? prefix + '.' : '') + key + ']\n';
+                            toml += convert(value, (prefix ? prefix + '.' : '') + key);
+                        } else {
+                            toml += (prefix ? prefix + '.' : '') + key + ' = ' + tomlValue(value) + '\n';
+                        }
+                    }
+                }
+                
+                return toml;
+            }
+            
+            function tomlValue(value) {
+                if (value === null) return '""';
+                if (typeof value === 'string') return '"' + value.replace(/"/g, '\\"') + '"';
+                if (typeof value === 'boolean') return value ? 'true' : 'false';
+                if (typeof value === 'number') return value;
+                if (Array.isArray(value)) return '[' + value.map(tomlValue).join(', ') + ']';
+                return String(value);
+            }
+            
+            return convert(obj);
+        }
+        
+        function copyResult() {
+            copyToClipboard(document.getElementById('output').value);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicode 转换 - 中文与 Unicode 互转 - BeJSON</title>
+    <meta name="description" content="免费的Unicode转换工具，中文与Unicode互转，处理中文编码问题。">
+    <meta name="keywords" content="Unicode转换,中文Unicode,Unicode编码">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo"><a href="/">BeJSON</a></div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/#tools">工具</a></li>
+                    <li><a href="/#code-gen">代码生成</a></li>
+                    <li><a href="/#utils">辅助工具</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-page-header">
+                <h1>Unicode 转换</h1>
+                <p>中文与 Unicode 编码互转</p>
+            </div>
+
+            <div class="tool-content">
+                <div class="editor-container">
+                    <textarea id="input" placeholder="输入中文或 Unicode（如：\u4e2d\u6587）..."></textarea>
+                    <textarea id="output" class="output-area" readonly placeholder="转换结果..."></textarea>
+                </div>
+
+                <div class="tool-actions" style="margin-top:20px;">
+                    <button class="btn" onclick="toUnicode()">中文 → Unicode</button>
+                    <button class="btn" onclick="fromUnicode()">Unicode → 中文</button>
+                    <button class="btn btn-secondary" onclick="copyResult()">复制</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container"><div class="footer-bottom"><p>&copy; 2026 BeJSON. All rights reserved.</p></div></div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script>
+        function toUnicode() {
+            const input = document.getElementById('input').value;
+            let result = '';
+            for (let i = 0; i < input.length; i++) {
+                result += '\\u' + input.charCodeAt(i).toString(16).padStart(4, '0');
+            }
+            document.getElementById('output').value = result;
+            showToast('转换成功', 'success');
+        }
+        
+        function fromUnicode() {
+            const input = document.getElementById('input').value;
+            try {
+                const result = input.replace(/\\u([0-9a-fA-F]{4})/g, function(match, code) {
+                    return String.fromCharCode(parseInt(code, 16));
+                });
+                document.getElementById('output').value = result;
+                showToast('转换成功', 'success');
+            } catch (e) {
+                showToast('转换失败: ' + e.message, 'error');
+            }
+        }
+        
+        function copyResult() {
+            copyToClipboard(document.getElementById('output').value);
+        }
+    </script>
+</body>
+</html>

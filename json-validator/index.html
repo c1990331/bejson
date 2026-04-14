@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON 校验工具 - 在线 JSON 验证器 - BeJSON</title>
+    <meta name="description" content="免费的JSON校验在线工具，检查JSON语法错误并提供修复建议。">
+    <meta name="keywords" content="JSON校验,json验证,json格式检查">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo"><a href="/">BeJSON</a></div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/#tools">工具</a></li>
+                    <li><a href="/#code-gen">代码生成</a></li>
+                    <li><a href="/#convert">格式转换</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-page-header">
+                <h1>JSON 校验工具</h1>
+                <p>检查 JSON 语法错误，提供详细错误信息</p>
+            </div>
+
+            <div class="tool-content">
+                <div class="editor-container">
+                    <textarea id="json-input" placeholder="输入 JSON 数据进行校验..."></textarea>
+                    <div id="json-output" class="output-area" style="display:none;"></div>
+                </div>
+
+                <div class="tool-actions" style="margin-top:20px;">
+                    <button class="btn" onclick="validateJson()">校验</button>
+                    <button class="btn btn-secondary" onclick="formatJson()">格式化</button>
+                </div>
+
+                <div id="status-message" class="status"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container"><div class="footer-bottom"><p>&copy; 2026 BeJSON. All rights reserved.</p></div></div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>

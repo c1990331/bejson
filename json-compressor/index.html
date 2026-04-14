@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON 压缩工具 - 在线 JSON 压缩器 - BeJSON</title>
+    <meta name="description" content="免费的JSON压缩在线工具，去除空格、换行和注释，减小JSON体积。">
+    <meta name="keywords" content="JSON压缩,json minify,json压缩工具">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo"><a href="/">BeJSON</a></div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/#tools">工具</a></li>
+                    <li><a href="/#code-gen">代码生成</a></li>
+                    <li><a href="/#convert">格式转换</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-page-header">
+                <h1>JSON 压缩工具</h1>
+                <p>去除空格、换行和注释，减小 JSON 体积</p>
+            </div>
+
+            <div class="tool-content">
+                <div class="editor-container">
+                    <textarea id="json-input" placeholder="输入 JSON 数据..."></textarea>
+                    <div id="json-output" class="output-area" style="display:none;"></div>
+                </div>
+
+                <div class="tool-actions" style="margin-top:20px;">
+                    <button class="btn" onclick="compressJson()">压缩</button>
+                    <button class="btn btn-secondary" onclick="formatJson()">格式化</button>
+                </div>
+
+                <div id="status-message" class="status"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container"><div class="footer-bottom"><p>&copy; 2026 BeJSON. All rights reserved.</p></div></div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>

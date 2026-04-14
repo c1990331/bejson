@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON 格式化工具 - 在线 JSON 格式化 beautifier - BeJSON</title>
+    <meta name="description" content="免费的JSON格式化在线工具，支持智能缩进、颜色高亮、多种缩进风格选择。">
+    <meta name="keywords" content="JSON格式化,JSON beautifier,在线JSON格式化,JSON格式化工具">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="/">BeJSON</a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/#tools">工具</a></li>
+                    <li><a href="/#code-gen">代码生成</a></li>
+                    <li><a href="/#convert">格式转换</a></li>
+                    <li><a href="/#utils">辅助工具</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-page-header">
+                <h1>JSON 格式化工具</h1>
+                <p>智能缩进、颜色高亮、多种缩进风格</p>
+            </div>
+
+            <div class="tool-content">
+                <div class="tool-options">
+                    <div class="option-group">
+                        <label>缩进：</label>
+                        <select id="indent-select" onchange="changeIndent()">
+                            <option value="2" selected>2 空格</option>
+                            <option value="4">4 空格</option>
+                            <option value="tab">Tab</option>
+                        </select>
+                    </div>
+                    <div class="option-group">
+                        <label>
+                            <input type="checkbox" id="sort-keys" onchange="formatJson()"> 按键排序
+                        </label>
+                    </div>
+                </div>
+
+                <div class="editor-container">
+                    <textarea id="json-input" placeholder="在此粘贴您的 JSON 数据..."></textarea>
+                    <div id="json-output" class="output-area" style="display:none;"></div>
+                </div>
+
+                <div class="tool-actions" style="margin-top: 20px;">
+                    <button class="btn" onclick="formatJson()">格式化</button>
+                    <button class="btn btn-secondary" onclick="compressJson()">压缩</button>
+                    <button class="btn btn-secondary" onclick="clearAll()">清空</button>
+                </div>
+
+                <div id="status-message" class="status"></div>
+            </div>
+
+            <div class="tool-content" style="margin-top: 30px;">
+                <h3>使用说明</h3>
+                <ul style="margin: 15px 0 0 20px; line-height: 2;">
+                    <li>将 JSON 数据粘贴到上方的输入框中</li>
+                    <li>点击"格式化"按钮即可得到格式化的 JSON</li>
+                    <li>可以选择缩进风格（2空格、4空格、Tab）</li>
+                    <li>支持按键排序选项</li>
+                    <li>点击"压缩"可以去掉所有空格和换行</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 BeJSON. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script>
+        let indent = 2;
+
+        function changeIndent() {
+            const select = document.getElementById('indent-select');
+            indent = select.value === 'tab' ? '\t' : parseInt(select.value);
+            formatJson();
+        }
+
+        function clearAll() {
+            document.getElementById('json-input').value = '';
+            document.getElementById('json-output').style.display = 'none';
+            localStorage.removeItem('bejson_input');
+        }
+
+        // Override format function to use selected indent
+        const originalFormat = formatJson;
+        formatJson = function() {
+            const input = document.getElementById('json-input').value;
+            const output = document.getElementById('json-output');
+            const status = document.getElementById('status-message');
+            const sortKeys = document.getElementById('sort-keys').checked;
+
+            if (!input.trim()) {
+                showStatus('请输入 JSON 数据', 'error');
+                return;
+            }
+
+            try {
+                let parsed = JSON.parse(input);
+                if (sortKeys) {
+                    parsed = sortObjectKeys(parsed);
+                }
+                const formatted = JSON.stringify(parsed, null, indent);
+
+                output.style.display = 'block';
+                output.innerHTML = syntaxHighlight(formatted);
+                output.className = 'output-area success';
+                showStatus('JSON 格式化成功 ✓', 'success');
+
+                copyToClipboard(formatted);
+            } catch (e) {
+                output.style.display = 'block';
+                output.textContent = e.message;
+                output.className = 'output-area error';
+                showStatus('JSON 格式错误: ' + e.message, 'error');
+            }
+        };
+
+        function sortObjectKeys(obj) {
+            if (Array.isArray(obj)) {
+                return obj.map(sortObjectKeys);
+            }
+            if (obj !== null && typeof obj === 'object') {
+                return Object.keys(obj).sort().reduce((result, key) => {
+                    result[key] = sortObjectKeys(obj[key]);
+                    return result;
+                }, {});
+            }
+            return obj;
+        }
+
+        // Compress JSON function
+        window.compressJson = function() {
+            const input = document.getElementById('json-input').value;
+            const output = document.getElementById('json-output');
+            const status = document.getElementById('status-message');
+
+            if (!input.trim()) {
+                showStatus('请输入 JSON 数据', 'error');
+                return;
+            }
+
+            try {
+                const parsed = JSON.parse(input);
+                const compressed = JSON.stringify(parsed);
+
+                output.style.display = 'block';
+                output.innerHTML = '<pre>' + compressed + '</pre>';
+                output.className = 'output-area';
+                showStatus('JSON 压缩成功 ✓', 'success');
+
+                copyToClipboard(compressed);
+            } catch (e) {
+                output.style.display = 'block';
+                output.textContent = e.message;
+                output.className = 'output-area error';
+                showStatus('JSON 格式错误: ' + e.message, 'error');
+            }
+        };
+
+        // Make formatJson available globally too
+        window.formatJson = formatJson;
+
+        // Load saved input
+        document.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('bejson_input');
+            if (saved) {
+                document.getElementById('json-input').value = saved;
+            }
+            document.getElementById('json-input').addEventListener('input', function() {
+                localStorage.setItem('bejson_input', this.value);
+            });
+        });
+    </script>
+</body>
+</html>

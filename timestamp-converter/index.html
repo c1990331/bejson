@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时间戳转换 - Unix 时间戳 ↔ 日期 - BeJSON</title>
+    <meta name="description" content="免费的时间戳转换工具，Unix时间戳与日期互转。支持毫秒/秒级时间戳，多种编程语言代码示例。">
+    <meta name="keywords" content="时间戳转换,Unix时间戳,timestamp转换,当前时间戳">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .current-time-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .current-time-box .label {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+        .current-time-box .time {
+            font-size: 28px;
+            font-weight: bold;
+            font-family: 'Monaco', 'Consolas', monospace;
+        }
+        .current-time-box .timestamp {
+            font-size: 16px;
+            margin-top: 8px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            opacity: 0.9;
+        }
+        .tool-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .tool-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+        }
+        .tool-card h3 {
+            margin-bottom: 16px;
+            color: #333;
+            font-size: 16px;
+        }
+        .tool-card label {
+            display: block;
+            margin-bottom: 8px;
+            color: #666;
+            font-size: 14px;
+        }
+        .tool-card input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            margin-bottom: 12px;
+        }
+        .tool-card input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .code-examples {
+            margin-top: 30px;
+        }
+        .code-examples h3 {
+            margin-bottom: 16px;
+            color: #333;
+        }
+        .code-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .code-tab {
+            padding: 8px 16px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .code-tab.active {
+            background: #667eea;
+            color: white;
+        }
+        .code-tab:hover:not(.active) {
+            background: #e0e0e0;
+        }
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .code-block .keyword { color: #c678dd; }
+        .code-block .string { color: #98c379; }
+        .code-block .function { color: #61afef; }
+        .code-block .comment { color: #5c6370; }
+        .copy-icon {
+            float: right;
+            cursor: pointer;
+            color: #666;
+            font-size: 12px;
+        }
+        .copy-icon:hover {
+            color: #667eea;
+        }
+        .result-area {
+            margin-top: 12px;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            display: none;
+        }
+        .result-area.show {
+            display: block;
+        }
+        .result-area .result-label {
+            font-size: 12px;
+            color: #999;
+        }
+        .result-area .result-value {
+            font-size: 16px;
+            color: #28a745;
+            font-family: 'Monaco', 'Consolas', monospace;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo"><a href="/">BeJSON</a></div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/#tools">工具</a></li>
+                    <li><a href="/#code-gen">代码生成</a></li>
+                    <li><a href="/#utils">辅助工具</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="tool-page">
+        <div class="container">
+            <div class="tool-page-header">
+                <h1>时间戳转换</h1>
+                <p>Unix 时间戳与日期互转 | 支持毫秒级时间戳</p>
+            </div>
+
+            <div class="tool-content">
+                <!-- 当前时间显示 -->
+                <div class="current-time-box">
+                    <div class="label">🕐 当前时间</div>
+                    <div class="time" id="current-time">--</div>
+                    <div class="timestamp">时间戳: <span id="current-timestamp">--</span></div>
+                </div>
+
+                <!-- 转换工具 -->
+                <div class="tool-grid">
+                    <!-- 时间戳转日期 -->
+                    <div class="tool-card">
+                        <h3>📅 时间戳 → 日期</h3>
+                        <label>时间戳（秒/毫秒）：</label>
+                        <input type="text" id="timestamp-input" placeholder="如：1704067200 或 1704067200000">
+                        <div class="btn-group">
+                            <button class="btn" onclick="timestampToDate()">转换</button>
+                            <button class="btn btn-secondary" onclick="useCurrentTimestamp()">使用当前时间</button>
+                        </div>
+                        <div id="ts-result" class="result-area">
+                            <div class="result-label">转换结果</div>
+                            <div class="result-value" id="ts-result-value"></div>
+                        </div>
+                    </div>
+
+                    <!-- 日期转时间戳 -->
+                    <div class="tool-card">
+                        <h3>⏰ 日期 → 时间戳</h3>
+                        <label>日期时间：</label>
+                        <input type="datetime-local" id="datetime-input">
+                        <div class="btn-group">
+                            <button class="btn" onclick="dateToTimestamp()">转换</button>
+                            <button class="btn btn-secondary" onclick="setNow()">当前时间</button>
+                        </div>
+                        <div id="dt-result" class="result-area">
+                            <div class="result-label">转换结果</div>
+                            <div class="result-value" id="dt-result-value"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 代码示例 -->
+                <div class="code-examples">
+                    <h3>💻 获取当前时间戳</h3>
+                    <div class="code-tabs">
+                        <button class="code-tab active" data-lang="javascript">JavaScript</button>
+                        <button class="code-tab" data-lang="python">Python</button>
+                        <button class="code-tab" data-lang="java">Java</button>
+                        <button class="code-tab" data-lang="go">Go</button>
+                        <button class="code-tab" data-lang="php">PHP</button>
+                        <button class="code-tab" data-lang="swift">Swift</button>
+                        <button class="code-tab" data-lang="csharp">C#</button>
+                        <button class="code-tab" data-lang="ruby">Ruby</button>
+                        <button class="code-tab" data-lang="shell">Shell</button>
+                        <button class="code-tab" data-lang="mysql">MySQL</button>
+                    </div>
+                    <div class="code-block">
+                        <span class="copy-icon" onclick="copyCode()">📋 复制</span>
+                        <pre id="code-content"><span class="comment">// JavaScript</span>
+<span class="keyword">Math</span>.round(<span class="keyword">new</span> Date() / <span class="string">1000</span>)
+<span class="comment">// 或</span>
+<span class="keyword">Date</span>.now()
+
+<span class="comment">// 毫秒级</span>
+<span class="keyword">new</span> Date().getTime()</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 BeJSON. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 代码示例
+        const codeExamples = {
+            javascript: `<span class="comment">// JavaScript</span>
+<span class="keyword">Math</span>.round(<span class="keyword">new</span> Date() / <span class="string">1000</span>)
+<span class="comment">// 或</span>
+<span class="keyword">Date</span>.now()
+
+<span class="comment">// 毫秒级</span>
+<span class="keyword">new</span> Date().getTime()`,
+            python: `<span class="comment"># Python</span>
+<span class="keyword">import</span> time
+time.time()
+
+<span class="comment"># 或</span>
+<span class="keyword">import</span> arrow
+arrow.utcnow().timestamp`,
+            java: `<span class="comment">// Java</span>
+<span class="comment">// pure java</span>
+System.currentTimeMillis() / <span class="string">1000</span>
+
+<span class="comment">// joda java</span>
+DateTime.now().getMillis() / <span class="string">1000</span>
+
+<span class="comment">// java >= 8</span>
+Instant.now().getEpochSecond()`,
+            go: `<span class="comment">// Go</span>
+<span class="keyword">import</span> (
+    <span class="string">"time"</span>
+)
+<span class="keyword">int64</span>(time.Now().Unix())`,
+            php: `<span class="comment">// PHP</span>
+<span class="keyword">time</span>()
+
+<span class="comment">// carbon php</span>
+<span class="keyword">use</span> Carbon\\Carbon;
+Carbon::now()->timestamp;`,
+            swift: `<span class="comment">// Swift</span>
+NSDate().timeIntervalSince1970`,
+            csharp: `<span class="comment">// C#</span>
+DateTimeOffset.UtcNow.ToUnixTimeSeconds()
+
+<span class="comment">// 毫秒级</span>
+DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()`,
+            ruby: `<span class="comment">// Ruby</span>
+Time.now.to_i`,
+            shell: `<span class="comment">// Shell</span>
+date +%s`,
+            mysql: `<span class="comment">// MySQL</span>
+SELECT unix_timestamp(now())`
+        };
+
+        // 切换代码示例
+        document.querySelectorAll('.code-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.code-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById('code-content').innerHTML = codeExamples[tab.dataset.lang];
+            });
+        });
+
+        // 更新当前时间
+        function updateCurrentTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            document.getElementById('current-time').textContent = 
+                `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+            document.getElementById('current-timestamp').textContent = 
+                Math.floor(now.getTime() / 1000);
+        }
+
+        updateCurrentTime();
+        setInterval(updateCurrentTime, 1000);
+
+        // 时间戳转日期
+        function timestampToDate() {
+            const timestamp = document.getElementById('timestamp-input').value.trim();
+            if (!timestamp) {
+                document.getElementById('ts-result-value').textContent = '请输入时间戳';
+                document.getElementById('ts-result-value').classList.add('error');
+                document.getElementById('ts-result').classList.add('show');
+                return;
+            }
+
+            let ts = parseInt(timestamp);
+            if (isNaN(ts)) {
+                document.getElementById('ts-result-value').textContent = '请输入有效的时间戳';
+                document.getElementById('ts-result-value').classList.add('error');
+                document.getElementById('ts-result').classList.add('show');
+                return;
+            }
+
+            // 自动识别秒/毫秒
+            if (ts < 10000000000) {
+                ts = ts * 1000; // 秒转毫秒
+            }
+
+            const date = new Date(ts);
+            const result = formatDateTime(date);
+            
+            document.getElementById('ts-result-value').textContent = result;
+            document.getElementById('ts-result-value').classList.remove('error');
+            document.getElementById('ts-result').classList.add('show');
+            
+            // 同时更新日期输入框
+            document.getElementById('datetime-input').value = date.toISOString().slice(0, 16);
+        }
+
+        // 日期转时间戳
+        function dateToTimestamp() {
+            const datetime = document.getElementById('datetime-input').value;
+            if (!datetime) {
+                document.getElementById('dt-result-value').textContent = '请选择日期';
+                document.getElementById('dt-result-value').classList.add('error');
+                document.getElementById('dt-result').classList.add('show');
+                return;
+            }
+
+            const date = new Date(datetime);
+            const timestamp = Math.floor(date.getTime() / 1000);
+            
+            document.getElementById('dt-result-value').textContent = timestamp + ' (秒)';
+            document.getElementById('dt-result-value').classList.remove('error');
+            document.getElementById('dt-result').classList.add('show');
+            
+            // 同时更新时间戳输入框
+            document.getElementById('timestamp-input').value = timestamp;
+        }
+
+        // 使用当前时间戳
+        function useCurrentTimestamp() {
+            const now = Math.floor(Date.now() / 1000);
+            document.getElementById('timestamp-input').value = now;
+            timestampToDate();
+        }
+
+        // 设置当前时间
+        function setNow() {
+            const now = new Date();
+            const offset = now.getTimezoneOffset() * 60000;
+            const localTime = new Date(now.getTime() - offset);
+            document.getElementById('datetime-input').value = localTime.toISOString().slice(0, 16);
+            dateToTimestamp();
+        }
+
+        // 格式化日期时间
+        function formatDateTime(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            const seconds = String(date.getSeconds()).padStart(2, '0');
+            const weekday = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'][date.getDay()];
+            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds} ${weekday}`;
+        }
+
+        // 复制代码
+        function copyCode() {
+            const code = document.getElementById('code-content').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                showToast('复制成功', 'success');
+            });
+        }
+
+        // 提示消息
+        function showToast(message, type) {
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.textContent = message;
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 12px 24px;
+                background: ${type === 'success' ? '#28a745' : '#dc3545'};
+                color: white;
+                border-radius: 8px;
+                z-index: 1000;
+                animation: fadeIn 0.3s;
+            `;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+    </script>
+</body>
+</html>
