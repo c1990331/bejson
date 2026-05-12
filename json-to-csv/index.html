@@ -99,6 +99,7 @@
                 <div class="tool-actions" style="margin-top:20px;">
                     <button class="btn" onclick="convert()">转换</button>
                     <button class="btn btn-secondary" onclick="copyResult()">复制</button>
+                    <button class="btn btn-secondary" onclick="downloadCsv()">下载 CSV</button>
                 </div>
             </div>
         </div>
@@ -117,9 +118,9 @@
 
                 <h2>如何使用</h2>
                 <ol>
-                  <li>在输入框中粘贴需要处理的内容</li>
-                  <li>根据需求选择选项或点击对应按钮</li>
-                  <li>在输出区域获取结果，支持一键复制</li>
+                  <li>在输入框中粘贴 JSON 数组数据（对象数组）</li>
+                  <li>点击"转换"按钮生成 CSV 内容</li>
+                  <li>点击"复制"复制结果，或点击"下载 CSV"直接保存为文件</li>
                 </ol>
 
               </div>
@@ -228,6 +229,25 @@
         
         function copyResult() {
             copyToClipboard(document.getElementById('output').value);
+        }
+
+        function downloadCsv() {
+            const content = document.getElementById('output').value;
+            if (!content || content.trim() === '') {
+                showToast('暂无内容可下载，请先进行转换', 'error');
+                return;
+            }
+
+            const blob = new Blob(['\uFEFF' + content], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'bejson-export.csv';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            showToast('CSV 文件下载已开始', 'success');
         }
     </script>
 </body>
