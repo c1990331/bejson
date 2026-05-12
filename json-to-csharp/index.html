@@ -38,6 +38,14 @@
   "url": "https://bejson.org/json-to-csharp/"
 }
 </script>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W77FHC00EK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-W77FHC00EK');
+</script>
 </head>
 <body>
     <header>
@@ -153,9 +161,48 @@
             </section>
     </main>
 
-    <footer>
-        <div class="container"><div class="footer-bottom"><p>&copy; 2026 BeJSON. All rights reserved.</p></div></div>
-    </footer>
+    <!-- BeJSON 公共尾部模板 - 请勿手动编辑各页面的footer，运行 node build.js 统一生成 -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>工具</h4>
+                <ul>
+                    <li><a href="/json-formatter/">JSON 格式化</a></li>
+                    <li><a href="/json-validator/">JSON 校验</a></li>
+                    <li><a href="/json-compressor/">JSON 压缩</a></li>
+                    <li><a href="/json-tree-view/">JSON 树视图</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>代码生成</h4>
+                <ul>
+                    <li><a href="/json-to-java/">JSON 转 Java</a></li>
+                    <li><a href="/json-to-go/">JSON 转 Go</a></li>
+                    <li><a href="/json-to-python/">JSON 转 Python</a></li>
+                    <li><a href="/json-to-typescript/">JSON 转 TypeScript</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>格式转换</h4>
+                <ul>
+                    <li><a href="/json-to-xml/">JSON 转 XML</a></li>
+                    <li><a href="/json-to-yaml/">JSON 转 YAML</a></li>
+                    <li><a href="/json-to-sql/">JSON 转 SQL</a></li>
+                    <li><a href="/csv-to-json/">CSV 转 JSON</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>学习</h4>
+                <ul>
+                    <li><a href="/learn/">JSON 教程</a></li>
+                    <li><a href="/docs/">文档</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 BeJSON. All rights reserved.</p></div>
+    </div>
+</footer>
 
     <script src="../js/app.js"></script>
     <script>
