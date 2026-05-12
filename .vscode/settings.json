@@ -1,0 +1,11 @@
+{
+    "intelephense.files.associations": [
+        "**/*.php",
+        "**/.php-accessor/**/*.php"
+    ],
+    "files.associations": {
+        "*.tmpl": "html",
+        "*.go": "go",
+        "**/.php-accessor/**/*.php": "php"
+    }
+}

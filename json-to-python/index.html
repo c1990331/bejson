@@ -8,6 +8,36 @@
     <meta name="keywords" content="JSON转Python,json to python,JSON生成Python类">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="../css/style.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BeJSON">
+    <meta property="og:title" content="JSON 转 Python - 在线生成 Python dataclass - BeJSON">
+    <meta property="og:description" content="免费的JSON转Python在线工具，输入JSON自动生成Python数据类。">
+    <meta property="og:url" content="https://bejson.org/json-to-python/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://bejson.org/favicon.ico">
+    <meta property="og:image:width" content="32">
+    <meta property="og:image:height" content="32">
+    <meta name="twitter:image" content="https://bejson.org/favicon.ico">
+    <meta name="twitter:title" content="JSON 转 Python - 在线生成 Python dataclass - BeJSON">
+    <meta name="twitter:description" content="免费的JSON转Python在线工具，输入JSON自动生成Python数据类。">
+    <link rel="canonical" href="https://bejson.org/json-to-python/">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON 转 Python",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "免费的JSON转Python在线工具，输入JSON自动生成Python数据类。",
+  "url": "https://bejson.org/json-to-python/"
+}
+</script>
 </head>
 <body>
     <header>
@@ -18,6 +48,9 @@
                     <li><a href="/#tools">工具</a></li>
                     <li><a href="/#code-gen">代码生成</a></li>
                     <li><a href="/#convert">格式转换</a></li>
+                    <li><a href="/#utils">辅助工具</a></li>
+                    <li><a href="/docs/">文档</a></li>
+                    <li><a href="/learn/">教程</a></li>
                 </ul>
             </nav>
         </div>
@@ -25,6 +58,25 @@
 
     <main class="tool-page">
         <div class="container">
+            
+            <nav aria-label="breadcrumb" style="margin-bottom: 20px; font-size: 14px; color: #666;">
+              <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap;">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/"><span itemprop="name">首页</span></a>
+                  <meta itemprop="position" content="1" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/#code-gen"><span itemprop="name">代码生成</span></a>
+                  <meta itemprop="position" content="2" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <span itemprop="name">JSON 转 Python</span>
+                  <meta itemprop="position" content="3" />
+                </li>
+              </ol>
+            </nav>
             <div class="tool-page-header">
                 <h1>JSON 转 Python</h1>
                 <p>输入 JSON，自动生成 Python 数据类</p>
@@ -49,6 +101,56 @@
                 </div>
             </div>
         </div>
+    
+            <section class="tool-description" style="margin-top: 40px;">
+              <div class="container">
+                <h2>JSON 转 Python 介绍</h2>
+                <p>BeJSON JSON 转 Python是一款免费在线工具，无需注册，浏览器端直接使用，数据不会上传到服务器，保障您的隐私安全。</p>
+                
+                <h2>使用场景</h2>
+                <ul>
+                  <li>将 JSON API 数据转为 Python dataclass 用于 FastAPI/Django</li>
+                  <li>数据处理脚本中解析 JSON 配置文件生成 Python 类</li>
+                  <li>机器学习项目中特征数据的类型安全定义</li>
+                  <li>Flask/Pyramid 后端接口请求体的数据建模</li>
+                </ul>
+
+                <h2>如何使用</h2>
+                <ol>
+                  <li>在输入框粘贴 JSON 数据</li>
+                  <li>设置目标 class 名称</li>
+                  <li>点击"转换"获取 Python dataclass 代码</li>
+                </ol>
+
+                <h2>常见问题</h2>
+                <div style="margin-top: 15px;">
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">需要安装额外依赖吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">生成的 dataclass 使用 Python 3.7+ 内置的 dataclasses 模块，无需安装任何第三方依赖。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">类型注解准确吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">工具会根据 JSON 值推断最匹配的类型（str/int/float/bool/List/Dict/Optional）。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">支持 Pydantic 模型吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">当前生成标准 dataclass。如需 Pydantic BaseModel，可以在生成后简单替换继承基类即可使用。</p>
+                    </details>
+                </div>
+
+              </div>
+            </section>
+
+            <section class="related-tools" style="margin-top: 40px;">
+              <div class="container">
+                <h2>相关工具推荐</h2>
+                <div class="tools-grid">
+                  <div class="tool-card"><h3><a href="/json-to-java/">JSON 转 Java</a></h3><p>Java POJO 生成</p></div>
+                  <div class="tool-card"><h3><a href="/json-to-javascript/">JSON 转 JavaScript</a></h3><p>JS 对象声明</p></div>
+                  <div class="tool-card"><h3><a href="/json-formatter/">JSON 格式化</a></h3><p>转换前美化数据</p></div>
+                </div>
+              </div>
+            </section>
     </main>
 
     <footer>

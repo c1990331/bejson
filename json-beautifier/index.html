@@ -117,6 +117,36 @@
         .output-area.theme-monokai { background: #272822; color: #f8f8f2; }
         .output-area.theme-dracula { background: #282a36; color: #f8f8f2; }
     </style>
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BeJSON">
+    <meta property="og:title" content="JSON 美化工具 - 在线 JSON 美化 beautifier - BeJSON">
+    <meta property="og:description" content="免费的JSON美化工具，支持多种样式主题、缩进风格、颜色高亮。">
+    <meta property="og:url" content="https://bejson.org/json-beautifier/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://bejson.org/favicon.ico">
+    <meta property="og:image:width" content="32">
+    <meta property="og:image:height" content="32">
+    <meta name="twitter:image" content="https://bejson.org/favicon.ico">
+    <meta name="twitter:title" content="JSON 美化工具 - 在线 JSON 美化 beautifier - BeJSON">
+    <meta name="twitter:description" content="免费的JSON美化工具，支持多种样式主题、缩进风格、颜色高亮。">
+    <link rel="canonical" href="https://bejson.org/json-beautifier/">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON 美化工具",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "免费的JSON美化工具，支持多种样式主题、缩进风格、颜色高亮。",
+  "url": "https://bejson.org/json-beautifier/"
+}
+</script>
 </head>
 <body>
     <header>
@@ -130,6 +160,8 @@
                     <li><a href="/#code-gen">代码生成</a></li>
                     <li><a href="/#convert">格式转换</a></li>
                     <li><a href="/#utils">辅助工具</a></li>
+                    <li><a href="/docs/">文档</a></li>
+                    <li><a href="/learn/">教程</a></li>
                 </ul>
             </nav>
         </div>
@@ -137,6 +169,25 @@
 
     <main class="tool-page">
         <div class="container">
+            
+            <nav aria-label="breadcrumb" style="margin-bottom: 20px; font-size: 14px; color: #666;">
+              <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap;">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/"><span itemprop="name">首页</span></a>
+                  <meta itemprop="position" content="1" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/#tools"><span itemprop="name">核心工具</span></a>
+                  <meta itemprop="position" content="2" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <span itemprop="name">JSON 美化工具</span>
+                  <meta itemprop="position" content="3" />
+                </li>
+              </ol>
+            </nav>
             <div class="tool-page-header">
                 <h1>JSON 美化工具</h1>
                 <p>多种主题风格、灵活缩进选项、实时预览</p>
@@ -207,6 +258,56 @@
                 </ul>
             </div>
         </div>
+    
+            <section class="tool-description" style="margin-top: 40px;">
+              <div class="container">
+                <h2>JSON 美化工具 介绍</h2>
+                <p>BeJSON JSON 美化工具是一款免费在线工具，无需注册，浏览器端直接使用，数据不会上传到服务器，保障您的隐私安全。</p>
+                
+                <h2>使用场景</h2>
+                <ul>
+                  <li>生成带有颜色高亮的美化 JSON 用于技术文档或演示文稿</li>
+                  <li>切换不同主题风格（深色/浅色/Monokai/Dracula）适配不同场景</li>
+                  <li>代码审查时以美观格式展示复杂的嵌套 JSON 结构</li>
+                  <li>转义非 ASCII 字符以确保 JSON 的最大兼容性</li>
+                </ul>
+
+                <h2>如何使用</h2>
+                <ol>
+                  <li>将 JSON 数据粘贴到左侧输入框</li>
+                  <li>选择缩进方式（2/4/8空格或Tab）、主题风格和附加选项</li>
+                  <li>点击"美化"按钮查看右侧高亮预览，并可一键复制</li>
+                </ol>
+
+                <h2>常见问题</h2>
+                <div style="margin-top: 15px;">
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">美化和格式化有什么区别？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">美化工具额外提供多种主题配色（深色/浅色/Monokai/Dracula）、ASCII 转义等高级功能，适合对展示效果有要求的场景。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">"转义 ASCII"选项什么时候用？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">当 JSON 需要在纯 ASCII 环境中传输时（如某些老旧系统），开启此选项可将中文等非 ASCII 字符转为 \uXXXX 格式。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">支持实时预览吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">支持。输入内容停止变化 500ms 后会自动触发美化预览，无需手动点击按钮。</p>
+                    </details>
+                </div>
+
+              </div>
+            </section>
+
+            <section class="related-tools" style="margin-top: 40px;">
+              <div class="container">
+                <h2>相关工具推荐</h2>
+                <div class="tools-grid">
+                  <div class="tool-card"><h3><a href="/json-formatter/">JSON 格式化</a></h3><p>快速格式化与压缩</p></div>
+                  <div class="tool-card"><h3><a href="/json-tree-view/">JSON 树视图</a></h3><p>可视化树形结构展示</p></div>
+                  <div class="tool-card"><h3><a href="/json-editor/">JSON 编辑器</a></h3><p>实时编辑与语法高亮</p></div>
+                </div>
+              </div>
+            </section>
     </main>
 
     <footer>

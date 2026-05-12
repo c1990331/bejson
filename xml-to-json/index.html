@@ -8,6 +8,36 @@
     <meta name="keywords" content="XML转JSON,xml to json,XML转换JSON">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="../css/style.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BeJSON">
+    <meta property="og:title" content="XML 转 JSON - 在线 XML 转换为 JSON - BeJSON">
+    <meta property="og:description" content="免费的XML转JSON在线工具，输入XML自动转换为JSON格式。">
+    <meta property="og:url" content="https://bejson.org/xml-to-json/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://bejson.org/favicon.ico">
+    <meta property="og:image:width" content="32">
+    <meta property="og:image:height" content="32">
+    <meta name="twitter:image" content="https://bejson.org/favicon.ico">
+    <meta name="twitter:title" content="XML 转 JSON - 在线 XML 转换为 JSON - BeJSON">
+    <meta name="twitter:description" content="免费的XML转JSON在线工具，输入XML自动转换为JSON格式。">
+    <link rel="canonical" href="https://bejson.org/xml-to-json/">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "XML 转 JSON",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "免费的XML转JSON在线工具，输入XML自动转换为JSON格式。",
+  "url": "https://bejson.org/xml-to-json/"
+}
+</script>
 </head>
 <body>
     <header>
@@ -18,6 +48,9 @@
                     <li><a href="/#tools">工具</a></li>
                     <li><a href="/#code-gen">代码生成</a></li>
                     <li><a href="/#convert">格式转换</a></li>
+                    <li><a href="/#utils">辅助工具</a></li>
+                    <li><a href="/docs/">文档</a></li>
+                    <li><a href="/learn/">教程</a></li>
                 </ul>
             </nav>
         </div>
@@ -25,6 +58,25 @@
 
     <main class="tool-page">
         <div class="container">
+            
+            <nav aria-label="breadcrumb" style="margin-bottom: 20px; font-size: 14px; color: #666;">
+              <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap;">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/"><span itemprop="name">首页</span></a>
+                  <meta itemprop="position" content="1" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/#convert"><span itemprop="name">格式转换</span></a>
+                  <meta itemprop="position" content="2" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <span itemprop="name">XML 转 JSON</span>
+                  <meta itemprop="position" content="3" />
+                </li>
+              </ol>
+            </nav>
             <div class="tool-page-header">
                 <h1>XML 转 JSON</h1>
                 <p>输入 XML，自动转换为 JSON 格式</p>
@@ -42,6 +94,56 @@
                 </div>
             </div>
         </div>
+    
+            <section class="tool-description" style="margin-top: 40px;">
+              <div class="container">
+                <h2>XML 转 JSON 介绍</h2>
+                <p>BeJSON XML 转 JSON是一款免费在线工具，无需注册，浏览器端直接使用，数据不会上传到服务器，保障您的隐私安全。</p>
+                
+                <h2>使用场景</h2>
+                <ul>
+                  <li>将 SOAP/WebService 返回的 XML 响应转为 JSON 用于现代前端框架</li>
+                  <li>Java Maven 项目中 pom.xml 或配置文件的 XML 数据提取和分析</li>
+                  <li>RSS/Atom 订阅源解析为 JSON 格式用于聚合阅读器开发</li>
+                  <li>遗留系统集成时将 XML 配置迁移为 JSON 格式</li>
+                </ul>
+
+                <h2>如何使用</h2>
+                <ol>
+                  <li>在输入框粘贴 XML 数据</li>
+                  <li>点击"转换"按钮解析 XML 结构</li>
+                  <li>复制生成的 JSON 结果到项目中使用</li>
+                </ol>
+
+                <h2>常见问题</h2>
+                <div style="margin-top: 15px;">
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">XML 属性会保留吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">XML 元素的属性会以 @ 前缀形式保留在生成的 JSON 对象中。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">同名子元素如何处理？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">同名子元素会自动转为数组格式，确保数据不丢失。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">支持 CDATA 段吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">CDATA 内容会被提取并作为纯文本值处理。</p>
+                    </details>
+                </div>
+
+              </div>
+            </section>
+
+            <section class="related-tools" style="margin-top: 40px;">
+              <div class="container">
+                <h2>相关工具推荐</h2>
+                <div class="tools-grid">
+                  <div class="tool-card"><h3><a href="/json-to-xml/">JSON 转 XML</a></h3><p>反向转换</p></div>
+                  <div class="tool-card"><h3><a href="/yaml-to-json/">YAML 转 JSON</a></h3><p>配置格式互转</p></div>
+                  <div class="tool-card"><h3><a href="/json-formatter/">JSON 格式化</a></h3><p>转换后美化</p></div>
+                </div>
+              </div>
+            </section>
     </main>
 
     <footer>

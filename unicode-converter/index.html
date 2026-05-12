@@ -8,6 +8,36 @@
     <meta name="keywords" content="Unicode转换,中文Unicode,Unicode编码">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="../css/style.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BeJSON">
+    <meta property="og:title" content="Unicode 转换 - 中文与 Unicode 互转 - BeJSON">
+    <meta property="og:description" content="免费的Unicode转换工具，中文与Unicode互转，处理中文编码问题。">
+    <meta property="og:url" content="https://bejson.org/unicode-converter/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://bejson.org/favicon.ico">
+    <meta property="og:image:width" content="32">
+    <meta property="og:image:height" content="32">
+    <meta name="twitter:image" content="https://bejson.org/favicon.ico">
+    <meta name="twitter:title" content="Unicode 转换 - 中文与 Unicode 互转 - BeJSON">
+    <meta name="twitter:description" content="免费的Unicode转换工具，中文与Unicode互转，处理中文编码问题。">
+    <link rel="canonical" href="https://bejson.org/unicode-converter/">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Unicode 转换",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "免费的Unicode转换工具，中文与Unicode互转，处理中文编码问题。",
+  "url": "https://bejson.org/unicode-converter/"
+}
+</script>
 </head>
 <body>
     <header>
@@ -17,7 +47,10 @@
                 <ul class="nav-menu">
                     <li><a href="/#tools">工具</a></li>
                     <li><a href="/#code-gen">代码生成</a></li>
+                    <li><a href="/#convert">格式转换</a></li>
                     <li><a href="/#utils">辅助工具</a></li>
+                    <li><a href="/docs/">文档</a></li>
+                    <li><a href="/learn/">教程</a></li>
                 </ul>
             </nav>
         </div>
@@ -25,6 +58,25 @@
 
     <main class="tool-page">
         <div class="container">
+            
+            <nav aria-label="breadcrumb" style="margin-bottom: 20px; font-size: 14px; color: #666;">
+              <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap;">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/"><span itemprop="name">首页</span></a>
+                  <meta itemprop="position" content="1" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/#utils"><span itemprop="name">辅助工具</span></a>
+                  <meta itemprop="position" content="2" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <span itemprop="name">Unicode 转换</span>
+                  <meta itemprop="position" content="3" />
+                </li>
+              </ol>
+            </nav>
             <div class="tool-page-header">
                 <h1>Unicode 转换</h1>
                 <p>中文与 Unicode 编码互转</p>
@@ -43,6 +95,41 @@
                 </div>
             </div>
         </div>
+    
+            <section class="tool-description" style="margin-top: 40px;">
+              <div class="container">
+                <h2>Unicode 转换 介绍</h2>
+                <p>BeJSON Unicode 转换是一款免费在线工具，无需注册，浏览器端直接使用，数据不会上传到服务器，保障您的隐私安全。</p>
+                
+                <h2>使用场景</h2>
+                <ul>
+                  <li>中文与 Unicode 编码互相转换</li>
+                  <li>处理多语言文本时的字符编码问题</li>
+                  <li>HTML 实体、JSON 转义中的 \\uXXXX 格式</li>
+                  <li>国际化(i18n)项目中的编码调试</li>
+                </ul>
+
+                <h2>如何使用</h2>
+                <ol>
+                  <li>在输入框中粘贴需要处理的内容</li>
+                  <li>根据需求选择选项或点击对应按钮</li>
+                  <li>在输出区域获取结果，支持一键复制</li>
+                </ol>
+
+              </div>
+            </section>
+
+            <section class="related-tools" style="margin-top: 40px;">
+              <div class="container">
+                <h2>相关工具推荐</h2>
+                <div class="tools-grid">
+                  <div class="tool-card"><h3><a href="/json-formatter/">JSON 格式化</a></h3><p>智能缩进与语法高亮</p></div>
+                  <div class="tool-card"><h3><a href="/json-validator/">JSON 校验</a></h3><p>语法检查与错误定位</p></div>
+                  <div class="tool-card"><h3><a href="/json-to-xml/">JSON 转 XML</a></h3><p>JSON 与 XML 互转</p></div>
+                  <div class="tool-card"><h3><a href="/base64-converter/">Base64 编解码</a></h3><p>Base64 编码与解码</p></div>
+                </div>
+              </div>
+            </section>
     </main>
 
     <footer>

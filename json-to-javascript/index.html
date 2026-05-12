@@ -5,9 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSON 转 JavaScript - 在线生成 JS 对象 - BeJSON</title>
     <meta name="description" content="免费的JSON转JavaScript在线工具，输入JSON生成JavaScript对象。">
-    <meta name="keywords" name="JSON转JavaScript,json to javascript">
+    <meta name="keywords" content="JSON转JavaScript,json to javascript">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="../css/style.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BeJSON">
+    <meta property="og:title" content="JSON 转 JavaScript - 在线生成 JS 对象 - BeJSON">
+    <meta property="og:description" content="免费的JSON转JavaScript在线工具，输入JSON生成JavaScript对象。">
+    <meta property="og:url" content="https://bejson.org/json-to-javascript/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://bejson.org/favicon.ico">
+    <meta property="og:image:width" content="32">
+    <meta property="og:image:height" content="32">
+    <meta name="twitter:image" content="https://bejson.org/favicon.ico">
+    <meta name="twitter:title" content="JSON 转 JavaScript - 在线生成 JS 对象 - BeJSON">
+    <meta name="twitter:description" content="免费的JSON转JavaScript在线工具，输入JSON生成JavaScript对象。">
+    <link rel="canonical" href="https://bejson.org/json-to-javascript/">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON 转 JavaScript",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "免费的JSON转JavaScript在线工具，输入JSON生成JavaScript对象。",
+  "url": "https://bejson.org/json-to-javascript/"
+}
+</script>
 </head>
 <body>
     <header>
@@ -18,6 +48,9 @@
                     <li><a href="/#tools">工具</a></li>
                     <li><a href="/#code-gen">代码生成</a></li>
                     <li><a href="/#convert">格式转换</a></li>
+                    <li><a href="/#utils">辅助工具</a></li>
+                    <li><a href="/docs/">文档</a></li>
+                    <li><a href="/learn/">教程</a></li>
                 </ul>
             </nav>
         </div>
@@ -25,6 +58,25 @@
 
     <main class="tool-page">
         <div class="container">
+            
+            <nav aria-label="breadcrumb" style="margin-bottom: 20px; font-size: 14px; color: #666;">
+              <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap;">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/"><span itemprop="name">首页</span></a>
+                  <meta itemprop="position" content="1" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/#code-gen"><span itemprop="name">代码生成</span></a>
+                  <meta itemprop="position" content="2" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <span itemprop="name">JSON 转 JavaScript</span>
+                  <meta itemprop="position" content="3" />
+                </li>
+              </ol>
+            </nav>
             <div class="tool-page-header">
                 <h1>JSON 转 JavaScript</h1>
                 <p>输入 JSON，生成 JavaScript 对象声明</p>
@@ -42,6 +94,56 @@
                 </div>
             </div>
         </div>
+    
+            <section class="tool-description" style="margin-top: 40px;">
+              <div class="container">
+                <h2>JSON 转 JavaScript 介绍</h2>
+                <p>BeJSON JSON 转 JavaScript是一款免费在线工具，无需注册，浏览器端直接使用，数据不会上传到服务器，保障您的隐私安全。</p>
+                
+                <h2>使用场景</h2>
+                <ul>
+                  <li>将 JSON 配置数据转为 JavaScript const 变量用于前端项目</li>
+                  <li>Node.js 脚本中将 JSON 文件内容转为 JS 模块引用</li>
+                  <li>HTML 页面内嵌数据初始化时将 JSON 转为 JS 对象字面量</li>
+                  <li>Mock 数据生成时快速创建 JS 测试数据常量</li>
+                </ul>
+
+                <h2>如何使用</h2>
+                <ol>
+                  <li>在输入框粘贴 JSON 数据</li>
+                  <li>点击"转换"按钮</li>
+                  <li>复制生成的 JavaScript 代码直接使用</li>
+                </ol>
+
+                <h2>常见问题</h2>
+                <div style="margin-top: 15px;">
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">输出的是合法 JS 语法吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">是的。输出的代码使用 const 声明和 JSON.stringify 格式化，可以直接在浏览器或 Node.js 中运行。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">和 JSON.parse 有什么区别？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">JSON.parse 是运行时解析字符串；本工具是在编码阶段将 JSON 转为可读性更好的 JS 对象字面量源码。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">支持 ES Module 导出吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">当前输出 const 声明。您可以在生成的代码前加上 export 即可作为 ES Module 使用。</p>
+                    </details>
+                </div>
+
+              </div>
+            </section>
+
+            <section class="related-tools" style="margin-top: 40px;">
+              <div class="container">
+                <h2>相关工具推荐</h2>
+                <div class="tools-grid">
+                  <div class="tool-card"><h3><a href="/json-to-typescript/">JSON 转 TypeScript</a></h3><p>TypeScript interface</p></div>
+                  <div class="tool-card"><h3><a href="/json-to-python/">JSON 转 Python</a></h3><p>Python dataclass</p></div>
+                  <div class="tool-card"><h3><a href="/json-formatter/">JSON 格式化</a></h3><p>转换前美化数据</p></div>
+                </div>
+              </div>
+            </section>
     </main>
 
     <footer>

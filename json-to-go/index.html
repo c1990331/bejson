@@ -8,6 +8,36 @@
     <meta name="keywords" content="JSON转Go,json to go,JSON生成Go struct">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="../css/style.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BeJSON">
+    <meta property="og:title" content="JSON 转 Go - 在线生成 Go struct - BeJSON">
+    <meta property="og:description" content="免费的JSON转Go在线工具，输入JSON自动生成Go结构体，支持json标签。">
+    <meta property="og:url" content="https://bejson.org/json-to-go/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://bejson.org/favicon.ico">
+    <meta property="og:image:width" content="32">
+    <meta property="og:image:height" content="32">
+    <meta name="twitter:image" content="https://bejson.org/favicon.ico">
+    <meta name="twitter:title" content="JSON 转 Go - 在线生成 Go struct - BeJSON">
+    <meta name="twitter:description" content="免费的JSON转Go在线工具，输入JSON自动生成Go结构体，支持json标签。">
+    <link rel="canonical" href="https://bejson.org/json-to-go/">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON 转 Go",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "免费的JSON转Go在线工具，输入JSON自动生成Go结构体，支持json标签。",
+  "url": "https://bejson.org/json-to-go/"
+}
+</script>
 </head>
 <body>
     <header>
@@ -18,6 +48,9 @@
                     <li><a href="/#tools">工具</a></li>
                     <li><a href="/#code-gen">代码生成</a></li>
                     <li><a href="/#convert">格式转换</a></li>
+                    <li><a href="/#utils">辅助工具</a></li>
+                    <li><a href="/docs/">文档</a></li>
+                    <li><a href="/learn/">教程</a></li>
                 </ul>
             </nav>
         </div>
@@ -25,6 +58,25 @@
 
     <main class="tool-page">
         <div class="container">
+            
+            <nav aria-label="breadcrumb" style="margin-bottom: 20px; font-size: 14px; color: #666;">
+              <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap;">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/"><span itemprop="name">首页</span></a>
+                  <meta itemprop="position" content="1" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/#code-gen"><span itemprop="name">代码生成</span></a>
+                  <meta itemprop="position" content="2" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <span itemprop="name">JSON 转 Go</span>
+                  <meta itemprop="position" content="3" />
+                </li>
+              </ol>
+            </nav>
             <div class="tool-page-header">
                 <h1>JSON 转 Go</h1>
                 <p>输入 JSON，自动生成 Go 结构体</p>
@@ -49,6 +101,56 @@
                 </div>
             </div>
         </div>
+    
+            <section class="tool-description" style="margin-top: 40px;">
+              <div class="container">
+                <h2>JSON 转 Go 介绍</h2>
+                <p>BeJSON JSON 转 Go是一款免费在线工具，无需注册，浏览器端直接使用，数据不会上传到服务器，保障您的隐私安全。</p>
+                
+                <h2>使用场景</h2>
+                <ul>
+                  <li>将 JSON API 响应转为 Go struct 用于 Gin/Echo 等框架</li>
+                  <li>Kubernetes/YAML 配置对应的 Go 结构体快速生成</li>
+                  <li>微服务间 JSON 通信的数据模型定义</li>
+                  <li>自动添加 json tag 确保 JSON key 与结构体字段正确映射</li>
+                </ul>
+
+                <h2>如何使用</h2>
+                <ol>
+                  <li>在输入框粘贴 JSON 数据</li>
+                  <li>设置 struct 名称（默认 User）</li>
+                  <li>点击"转换"获取带 json tag 的 Go 结构体定义</li>
+                </ol>
+
+                <h2>常见问题</h2>
+                <div style="margin-top: 15px;">
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">生成的 struct 包含 json tag 吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">是的，每个字段都会自动添加 \`json:"fieldname"\` 标签，确保 json.Marshal/Unmarshal 正确映射。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">空接口和 any 类型怎么处理？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">JSON null 值会生成指针类型（如 *int），JSON 对象中的未知结构会使用 interface{}。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">支持 omitempty tag 吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">当前版本暂不自动添加 omitempty。您可以在生成后根据需要手动补充。</p>
+                    </details>
+                </div>
+
+              </div>
+            </section>
+
+            <section class="related-tools" style="margin-top: 40px;">
+              <div class="container">
+                <h2>相关工具推荐</h2>
+                <div class="tools-grid">
+                  <div class="tool-card"><h3><a href="/json-to-java/">JSON 转 Java</a></h3><p>Java 实体类生成</p></div>
+                  <div class="tool-card"><h3><a href="/json-to-python/">JSON 转 Python</a></h3><p>Python dataclass</p></div>
+                  <div class="tool-card"><h3><a href="/json-formatter/">JSON 格式化</a></h3><p>转换前美化数据</p></div>
+                </div>
+              </div>
+            </section>
     </main>
 
     <footer>

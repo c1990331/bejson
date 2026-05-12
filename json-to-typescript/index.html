@@ -8,6 +8,36 @@
     <meta name="keywords" content="JSON转TypeScript,JSON to TypeScript,在线转换">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="../css/style.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BeJSON">
+    <meta property="og:title" content="JSON 转 TypeScript - 在线生成 TypeScript 接口定义 - BeJSON">
+    <meta property="og:description" content="免费的JSON转TypeScript在线工具，输入JSON自动生成TypeScript接口定义，支持嵌套对象、数组、可选属性。">
+    <meta property="og:url" content="https://bejson.org/json-to-typescript/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://bejson.org/favicon.ico">
+    <meta property="og:image:width" content="32">
+    <meta property="og:image:height" content="32">
+    <meta name="twitter:image" content="https://bejson.org/favicon.ico">
+    <meta name="twitter:title" content="JSON 转 TypeScript - 在线生成 TypeScript 接口定义 - BeJSON">
+    <meta name="twitter:description" content="免费的JSON转TypeScript在线工具，输入JSON自动生成TypeScript接口定义，支持嵌套对象、数组、可选属性。">
+    <link rel="canonical" href="https://bejson.org/json-to-typescript/">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON 转 TypeScript",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "免费的JSON转TypeScript在线工具，输入JSON自动生成TypeScript接口定义，支持嵌套对象、数组、可选属性。",
+  "url": "https://bejson.org/json-to-typescript/"
+}
+</script>
 </head>
 <body>
     <header>
@@ -18,6 +48,9 @@
                     <li><a href="/#tools">工具</a></li>
                     <li><a href="/#code-gen">代码生成</a></li>
                     <li><a href="/#convert">格式转换</a></li>
+                    <li><a href="/#utils">辅助工具</a></li>
+                    <li><a href="/docs/">文档</a></li>
+                    <li><a href="/learn/">教程</a></li>
                 </ul>
             </nav>
         </div>
@@ -25,6 +58,25 @@
 
     <main class="tool-page">
         <div class="container">
+            
+            <nav aria-label="breadcrumb" style="margin-bottom: 20px; font-size: 14px; color: #666;">
+              <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap;">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/"><span itemprop="name">首页</span></a>
+                  <meta itemprop="position" content="1" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/#code-gen"><span itemprop="name">代码生成</span></a>
+                  <meta itemprop="position" content="2" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <span itemprop="name">JSON 转 TypeScript</span>
+                  <meta itemprop="position" content="3" />
+                </li>
+              </ol>
+            </nav>
             <div class="tool-page-header">
                 <h1>JSON 转 TypeScript</h1>
                 <p>输入 JSON，自动生成 TypeScript 接口定义</p>
@@ -49,6 +101,56 @@
                 </div>
             </div>
         </div>
+    
+            <section class="tool-description" style="margin-top: 40px;">
+              <div class="container">
+                <h2>JSON 转 TypeScript 介绍</h2>
+                <p>BeJSON JSON 转 TypeScript是一款免费在线工具，无需注册，浏览器端直接使用，数据不会上传到服务器，保障您的隐私安全。</p>
+                
+                <h2>使用场景</h2>
+                <ul>
+                  <li>将后端 API 返回的 JSON 转为 TypeScript interface 用于前端项目</li>
+                  <li>Angular/Vue/React 项目中 API 响应的类型安全定义</li>
+                  <li>NestJS 全栈开发中前后端共享数据类型</li>
+                  <li>支持嵌套对象、数组和可选属性（?）的完整类型推导</li>
+                </ul>
+
+                <h2>如何使用</h2>
+                <ol>
+                  <li>在输入框粘贴 JSON 示例数据</li>
+                  <li>设置 interface 名称（默认 RootObject）</li>
+                  <li>点击"转换"获取 TypeScript 接口定义代码</li>
+                </ol>
+
+                <h2>常见问题</h2>
+                <div style="margin-top: 15px;">
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">可选属性是如何判断的？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">JSON 中值为 null 的字段会被标记为可选属性（加 ? 后缀），表示该字段可能不存在。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">数组的类型推导准确吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">会分析数组首元素的类型来推导泛型参数。如果数组为空或混合类型，则使用 any[]。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">支持导出为 type 而非 interface 吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">当前版本生成 interface 格式。您可以手动将 interface 替换为 export type，功能上基本等效。</p>
+                    </details>
+                </div>
+
+              </div>
+            </section>
+
+            <section class="related-tools" style="margin-top: 40px;">
+              <div class="container">
+                <h2>相关工具推荐</h2>
+                <div class="tools-grid">
+                  <div class="tool-card"><h3><a href="/json-to-java/">JSON 转 Java</a></h3><p>后端实体类生成</p></div>
+                  <div class="tool-card"><h3><a href="/json-to-javascript/">JSON 转 JavaScript</a></h3><p>JS 对象声明</p></div>
+                  <div class="tool-card"><h3><a href="/json-validator/">JSON 校验</a></h3><p>校验 API 数据格式</p></div>
+                </div>
+              </div>
+            </section>
     </main>
 
     <footer>

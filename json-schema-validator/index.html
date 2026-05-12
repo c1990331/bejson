@@ -8,6 +8,36 @@
     <meta name="keywords" content="JSON Schema校验,json schema validator">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="../css/style.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BeJSON">
+    <meta property="og:title" content="JSON Schema 校验 - 在线 JSON Schema 验证器 - BeJSON">
+    <meta property="og:description" content="免费的JSON Schema校验工具，基于JSON Schema标准验证JSON数据。">
+    <meta property="og:url" content="https://bejson.org/json-schema-validator/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://bejson.org/favicon.ico">
+    <meta property="og:image:width" content="32">
+    <meta property="og:image:height" content="32">
+    <meta name="twitter:image" content="https://bejson.org/favicon.ico">
+    <meta name="twitter:title" content="JSON Schema 校验 - 在线 JSON Schema 验证器 - BeJSON">
+    <meta name="twitter:description" content="免费的JSON Schema校验工具，基于JSON Schema标准验证JSON数据。">
+    <link rel="canonical" href="https://bejson.org/json-schema-validator/">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON Schema 校验",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "免费的JSON Schema校验工具，基于JSON Schema标准验证JSON数据。",
+  "url": "https://bejson.org/json-schema-validator/"
+}
+</script>
 </head>
 <body>
     <header>
@@ -18,6 +48,9 @@
                     <li><a href="/#tools">工具</a></li>
                     <li><a href="/#code-gen">代码生成</a></li>
                     <li><a href="/#convert">格式转换</a></li>
+                    <li><a href="/#utils">辅助工具</a></li>
+                    <li><a href="/docs/">文档</a></li>
+                    <li><a href="/learn/">教程</a></li>
                 </ul>
             </nav>
         </div>
@@ -25,6 +58,25 @@
 
     <main class="tool-page">
         <div class="container">
+            
+            <nav aria-label="breadcrumb" style="margin-bottom: 20px; font-size: 14px; color: #666;">
+              <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap;">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/"><span itemprop="name">首页</span></a>
+                  <meta itemprop="position" content="1" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/#tools"><span itemprop="name">核心工具</span></a>
+                  <meta itemprop="position" content="2" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <span itemprop="name">JSON Schema 校验</span>
+                  <meta itemprop="position" content="3" />
+                </li>
+              </ol>
+            </nav>
             <div class="tool-page-header">
                 <h1>JSON Schema 校验</h1>
                 <p>基于 JSON Schema 标准验证 JSON 数据</p>
@@ -59,6 +111,56 @@
                 <div id="result" class="status" style="margin-top:20px;display:block;"></div>
             </div>
         </div>
+    
+            <section class="tool-description" style="margin-top: 40px;">
+              <div class="container">
+                <h2>JSON Schema 校验 介绍</h2>
+                <p>BeJSON JSON Schema 校验是一款免费在线工具，无需注册，浏览器端直接使用，数据不会上传到服务器，保障您的隐私安全。</p>
+                
+                <h2>使用场景</h2>
+                <ul>
+                  <li>基于 JSON Schema 校验前端表单提交的数据格式是否合法</li>
+                  <li>验证 RESTful API 的请求体是否符合接口契约定义</li>
+                  <li>测试 OpenAPI / Swagger 文档中的数据模型约束规则</li>
+                  <li>确保前后端数据交换时的类型一致性和完整性</li>
+                </ul>
+
+                <h2>如何使用</h2>
+                <ol>
+                  <li>在上方的 Schema 编辑区定义 JSON Schema 规则</li>
+                  <li>在下方的编辑区填入待校验的 JSON 数据</li>
+                  <li>点击"校验"按钮，查看详细的校验通过或失败信息</li>
+                </ol>
+
+                <h2>常见问题</h2>
+                <div style="margin-top: 15px;">
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">什么是 JSON Schema？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">JSON Schema 是一种用于描述 JSON 数据结构和约束规则的声明式格式，可以定义类型、必填字段、取值范围、正则模式等规则。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">支持哪些 Schema 关键字？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">支持常用的 type、properties、required、minimum、maximum、minLength、maxLength、pattern、enum、items 等关键字。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">和普通 JSON 校验有什么区别？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">普通 JSON 校验只检查语法正确性；Schema 校验可以进一步验证数据的语义约束，如字段类型、必填项、值范围等业务规则。</p>
+                    </details>
+                </div>
+
+              </div>
+            </section>
+
+            <section class="related-tools" style="margin-top: 40px;">
+              <div class="container">
+                <h2>相关工具推荐</h2>
+                <div class="tools-grid">
+                  <div class="tool-card"><h3><a href="/json-validator/">JSON 校验</a></h3><p>基础语法检查</p></div>
+                  <div class="tool-card"><h3><a href="/json-formatter/">JSON 格式化</a></h3><p>美化 Schema 和数据</p></div>
+                  <div class="tool-card"><h3><a href="/json-editor/">JSON 编辑器</a></h3><p>编写复杂 Schema</p></div>
+                </div>
+              </div>
+            </section>
     </main>
 
     <footer>

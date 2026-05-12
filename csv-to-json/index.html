@@ -5,9 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSV 转 JSON - 在线 CSV 转换为 JSON - BeJSON</title>
     <meta name="description" content="免费的CSV转JSON在线工具，输入CSV自动转换为JSON格式。">
-    <meta name="keywords" name="CSV转JSON,csv to json">
+    <meta name="keywords" content="CSV转JSON,csv to json">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="../css/style.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BeJSON">
+    <meta property="og:title" content="CSV 转 JSON - 在线 CSV 转换为 JSON - BeJSON">
+    <meta property="og:description" content="免费的CSV转JSON在线工具，输入CSV自动转换为JSON格式。">
+    <meta property="og:url" content="https://bejson.org/csv-to-json/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://bejson.org/favicon.ico">
+    <meta property="og:image:width" content="32">
+    <meta property="og:image:height" content="32">
+    <meta name="twitter:image" content="https://bejson.org/favicon.ico">
+    <meta name="twitter:title" content="CSV 转 JSON - 在线 CSV 转换为 JSON - BeJSON">
+    <meta name="twitter:description" content="免费的CSV转JSON在线工具，输入CSV自动转换为JSON格式。">
+    <link rel="canonical" href="https://bejson.org/csv-to-json/">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "CSV 转 JSON",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "免费的CSV转JSON在线工具，输入CSV自动转换为JSON格式。",
+  "url": "https://bejson.org/csv-to-json/"
+}
+</script>
 </head>
 <body>
     <header>
@@ -18,6 +48,9 @@
                     <li><a href="/#tools">工具</a></li>
                     <li><a href="/#code-gen">代码生成</a></li>
                     <li><a href="/#convert">格式转换</a></li>
+                    <li><a href="/#utils">辅助工具</a></li>
+                    <li><a href="/docs/">文档</a></li>
+                    <li><a href="/learn/">教程</a></li>
                 </ul>
             </nav>
         </div>
@@ -25,6 +58,25 @@
 
     <main class="tool-page">
         <div class="container">
+            
+            <nav aria-label="breadcrumb" style="margin-bottom: 20px; font-size: 14px; color: #666;">
+              <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap;">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/"><span itemprop="name">首页</span></a>
+                  <meta itemprop="position" content="1" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/#convert"><span itemprop="name">格式转换</span></a>
+                  <meta itemprop="position" content="2" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <span itemprop="name">CSV 转 JSON</span>
+                  <meta itemprop="position" content="3" />
+                </li>
+              </ol>
+            </nav>
             <div class="tool-page-header">
                 <h1>CSV 转 JSON</h1>
                 <p>输入 CSV，自动转换为 JSON 格式</p>
@@ -44,6 +96,56 @@
                 </div>
             </div>
         </div>
+    
+            <section class="tool-description" style="margin-top: 40px;">
+              <div class="container">
+                <h2>CSV 转 JSON 介绍</h2>
+                <p>BeJSON CSV 转 JSON是一款免费在线工具，无需注册，浏览器端直接使用，数据不会上传到服务器，保障您的隐私安全。</p>
+                
+                <h2>使用场景</h2>
+                <ul>
+                  <li>将 Excel 导出的 CSV 数据转为 JSON 格式用于前端图表库（如 ECharts、Chart.js）</li>
+                  <li>数据库导出的 CSV 备份文件转换为 JSON 用于 API 接口返回</li>
+                  <li>电子表格数据与 Web 应用之间的数据交换和格式桥接</li>
+                  <li>批量导入 CSV 产品目录到电商系统或 CMS 后台</li>
+                </ul>
+
+                <h2>如何使用</h2>
+                <ol>
+                  <li>在输入框粘贴 CSV 数据（首行为表头）</li>
+                  <li>点击"转换"按钮自动识别表头和字段</li>
+                  <li>复制生成的 JSON 数组到项目中使用</li>
+                </ol>
+
+                <h2>常见问题</h2>
+                <div style="margin-top: 15px;">
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">CSV 表头必须是第一行吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">是的。工具会将第一行作为 JSON 对象的键名，后续行作为值生成对象数组。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">支持带引号的 CSV 吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">支持标准 RFC 4180 CSV 格式，包括引号包裹的字段值。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">空单元格如何处理？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">空单元格会生成空字符串值 "" 而非 null。</p>
+                    </details>
+                </div>
+
+              </div>
+            </section>
+
+            <section class="related-tools" style="margin-top: 40px;">
+              <div class="container">
+                <h2>相关工具推荐</h2>
+                <div class="tools-grid">
+                  <div class="tool-card"><h3><a href="/json-to-csv/">JSON 转 CSV</a></h3><p>反向转换</p></div>
+                  <div class="tool-card"><h3><a href="/json-to-sql/">JSON 转 SQL</a></h3><p>数据库导入</p></div>
+                  <div class="tool-card"><h3><a href="/json-formatter/">JSON 格式化</a></h3><p>转换后美化</p></div>
+                </div>
+              </div>
+            </section>
     </main>
 
     <footer>

@@ -8,6 +8,36 @@
     <meta name="keywords" content="JSON压缩,json minify,json压缩工具">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="../css/style.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BeJSON">
+    <meta property="og:title" content="JSON 压缩工具 - 在线 JSON 压缩器 - BeJSON">
+    <meta property="og:description" content="免费的JSON压缩在线工具，去除空格、换行和注释，减小JSON体积。">
+    <meta property="og:url" content="https://bejson.org/json-compressor/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://bejson.org/favicon.ico">
+    <meta property="og:image:width" content="32">
+    <meta property="og:image:height" content="32">
+    <meta name="twitter:image" content="https://bejson.org/favicon.ico">
+    <meta name="twitter:title" content="JSON 压缩工具 - 在线 JSON 压缩器 - BeJSON">
+    <meta name="twitter:description" content="免费的JSON压缩在线工具，去除空格、换行和注释，减小JSON体积。">
+    <link rel="canonical" href="https://bejson.org/json-compressor/">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON 压缩工具",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "免费的JSON压缩在线工具，去除空格、换行和注释，减小JSON体积。",
+  "url": "https://bejson.org/json-compressor/"
+}
+</script>
 </head>
 <body>
     <header>
@@ -18,6 +48,9 @@
                     <li><a href="/#tools">工具</a></li>
                     <li><a href="/#code-gen">代码生成</a></li>
                     <li><a href="/#convert">格式转换</a></li>
+                    <li><a href="/#utils">辅助工具</a></li>
+                    <li><a href="/docs/">文档</a></li>
+                    <li><a href="/learn/">教程</a></li>
                 </ul>
             </nav>
         </div>
@@ -25,6 +58,25 @@
 
     <main class="tool-page">
         <div class="container">
+            
+            <nav aria-label="breadcrumb" style="margin-bottom: 20px; font-size: 14px; color: #666;">
+              <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap;">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/"><span itemprop="name">首页</span></a>
+                  <meta itemprop="position" content="1" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/#tools"><span itemprop="name">核心工具</span></a>
+                  <meta itemprop="position" content="2" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <span itemprop="name">JSON 压缩工具</span>
+                  <meta itemprop="position" content="3" />
+                </li>
+              </ol>
+            </nav>
             <div class="tool-page-header">
                 <h1>JSON 压缩工具</h1>
                 <p>去除空格、换行和注释，减小 JSON 体积</p>
@@ -44,6 +96,56 @@
                 <div id="status-message" class="status"></div>
             </div>
         </div>
+    
+            <section class="tool-description" style="margin-top: 40px;">
+              <div class="container">
+                <h2>JSON 压缩工具 介绍</h2>
+                <p>BeJSON JSON 压缩工具是一款免费在线工具，无需注册，浏览器端直接使用，数据不会上传到服务器，保障您的隐私安全。</p>
+                
+                <h2>使用场景</h2>
+                <ul>
+                  <li>压缩 API 请求/响应体，减少网络传输带宽消耗</li>
+                  <li>将 JSON 数据内联嵌入 HTML 属性或 JavaScript 变量中</li>
+                  <li>压缩日志文件中的 JSON 数据，节省存储空间</li>
+                  <li>优化移动端应用的网络请求性能</li>
+                </ul>
+
+                <h2>如何使用</h2>
+                <ol>
+                  <li>在输入框中粘贴需要压缩的 JSON 数据</li>
+                  <li>点击"压缩"按钮去除所有空格和换行</li>
+                  <li>复制压缩后的最小化 JSON 字符串</li>
+                </ol>
+
+                <h2>常见问题</h2>
+                <div style="margin-top: 15px;">
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">压缩后会丢失数据吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">不会。压缩只是去除多余的空白字符（空格、换行、制表符），JSON 数据本身的内容和结构完全保留不变。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">压缩率和 GZIP 相比如何？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">JSON 压缩（minify）通常能减小 30-50% 体积。若结合服务端 GZIP 压缩，总压缩率可达 80-90% 以上。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">压缩后如何恢复格式化？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">直接使用我们的 JSON 格式化工具即可恢复为带缩进的可读格式。</p>
+                    </details>
+                </div>
+
+              </div>
+            </section>
+
+            <section class="related-tools" style="margin-top: 40px;">
+              <div class="container">
+                <h2>相关工具推荐</h2>
+                <div class="tools-grid">
+                  <div class="tool-card"><h3><a href="/json-formatter/">JSON 格式化</a></h3><p>恢复可读格式</p></div>
+                  <div class="tool-card"><h3><a href="/json-beautifier/">JSON 美化</a></h3><p>多主题高亮美化</p></div>
+                  <div class="tool-card"><h3><a href="/json-validator/">JSON 校验</a></h3><p>压缩前先校验语法</p></div>
+                </div>
+              </div>
+            </section>
     </main>
 
     <footer>

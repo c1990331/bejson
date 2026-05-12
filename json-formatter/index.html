@@ -8,6 +8,36 @@
     <meta name="keywords" content="JSON格式化,JSON beautifier,在线JSON格式化,JSON格式化工具">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="../css/style.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BeJSON">
+    <meta property="og:title" content="JSON 格式化工具 - 在线 JSON 格式化 beautifier - BeJSON">
+    <meta property="og:description" content="免费的JSON格式化在线工具，支持智能缩进、颜色高亮、多种缩进风格选择。">
+    <meta property="og:url" content="https://bejson.org/json-formatter/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://bejson.org/favicon.ico">
+    <meta property="og:image:width" content="32">
+    <meta property="og:image:height" content="32">
+    <meta name="twitter:image" content="https://bejson.org/favicon.ico">
+    <meta name="twitter:title" content="JSON 格式化工具 - 在线 JSON 格式化 beautifier - BeJSON">
+    <meta name="twitter:description" content="免费的JSON格式化在线工具，支持智能缩进、颜色高亮、多种缩进风格选择。">
+    <link rel="canonical" href="https://bejson.org/json-formatter/">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON 格式化工具",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "免费的JSON格式化在线工具，支持智能缩进、颜色高亮、多种缩进风格选择。",
+  "url": "https://bejson.org/json-formatter/"
+}
+</script>
 </head>
 <body>
     <header>
@@ -21,6 +51,8 @@
                     <li><a href="/#code-gen">代码生成</a></li>
                     <li><a href="/#convert">格式转换</a></li>
                     <li><a href="/#utils">辅助工具</a></li>
+                    <li><a href="/docs/">文档</a></li>
+                    <li><a href="/learn/">教程</a></li>
                 </ul>
             </nav>
         </div>
@@ -28,6 +60,25 @@
 
     <main class="tool-page">
         <div class="container">
+            
+            <nav aria-label="breadcrumb" style="margin-bottom: 20px; font-size: 14px; color: #666;">
+              <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap;">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/"><span itemprop="name">首页</span></a>
+                  <meta itemprop="position" content="1" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/#tools"><span itemprop="name">核心工具</span></a>
+                  <meta itemprop="position" content="2" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <span itemprop="name">JSON 格式化工具</span>
+                  <meta itemprop="position" content="3" />
+                </li>
+              </ol>
+            </nav>
             <div class="tool-page-header">
                 <h1>JSON 格式化工具</h1>
                 <p>智能缩进、颜色高亮、多种缩进风格</p>
@@ -75,6 +126,56 @@
                 </ul>
             </div>
         </div>
+    
+            <section class="tool-description" style="margin-top: 40px;">
+              <div class="container">
+                <h2>JSON 格式化工具 介绍</h2>
+                <p>BeJSON JSON 格式化工具是一款免费在线工具，无需注册，浏览器端直接使用，数据不会上传到服务器，保障您的隐私安全。</p>
+                
+                <h2>使用场景</h2>
+                <ul>
+                  <li>格式化 API 返回的压缩 JSON 数据，便于阅读和分析</li>
+                  <li>美化代码中硬编码的 JSON 字符串，提升代码可读性</li>
+                  <li>按指定缩进风格（2空格/4空格/Tab）统一项目 JSON 格式</li>
+                  <li>按键名排序后输出，方便对比两个 JSON 的差异</li>
+                </ul>
+
+                <h2>如何使用</h2>
+                <ol>
+                  <li>在输入框中粘贴需要处理的 JSON 内容</li>
+                  <li>选择缩进风格（2空格/4空格/Tab），可选是否按键排序</li>
+                  <li>点击"格式化"按钮，在输出区域获取结果并一键复制</li>
+                </ol>
+
+                <h2>常见问题</h2>
+                <div style="margin-top: 15px;">
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">支持处理多大的 JSON 数据？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">本工具在浏览器端运行，建议处理 5MB 以内的 JSON 文件。超大文件可能导致浏览器卡顿。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">格式化后数据会被上传吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">不会。所有处理都在您的浏览器本地完成，数据不会发送到任何服务器。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">"按键排序"选项有什么用？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">启用后会将 JSON 对象的所有键按字母顺序排序，便于对比两个结构相同但键顺序不同的 JSON。</p>
+                    </details>
+                </div>
+
+              </div>
+            </section>
+
+            <section class="related-tools" style="margin-top: 40px;">
+              <div class="container">
+                <h2>相关工具推荐</h2>
+                <div class="tools-grid">
+                  <div class="tool-card"><h3><a href="/json-validator/">JSON 校验</a></h3><p>语法检查与错误定位</p></div>
+                  <div class="tool-card"><h3><a href="/json-compressor/">JSON 压缩</a></h3><p>去除空格减小体积</p></div>
+                  <div class="tool-card"><h3><a href="/json-editor/">JSON 编辑器</a></h3><p>实时预览与行号显示</p></div>
+                </div>
+              </div>
+            </section>
     </main>
 
     <footer>

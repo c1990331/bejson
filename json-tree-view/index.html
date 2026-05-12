@@ -8,6 +8,36 @@
     <meta name="keywords" content="JSON树视图,json tree view,JSON可视化">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="../css/style.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BeJSON">
+    <meta property="og:title" content="JSON 树视图 - 在线可视化 JSON 树形结构 - BeJSON">
+    <meta property="og:description" content="免费的JSON树视图在线工具，可视化展示JSON数据的树形结构，支持展开/折叠。">
+    <meta property="og:url" content="https://bejson.org/json-tree-view/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://bejson.org/favicon.ico">
+    <meta property="og:image:width" content="32">
+    <meta property="og:image:height" content="32">
+    <meta name="twitter:image" content="https://bejson.org/favicon.ico">
+    <meta name="twitter:title" content="JSON 树视图 - 在线可视化 JSON 树形结构 - BeJSON">
+    <meta name="twitter:description" content="免费的JSON树视图在线工具，可视化展示JSON数据的树形结构，支持展开/折叠。">
+    <link rel="canonical" href="https://bejson.org/json-tree-view/">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON 树视图",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "免费的JSON树视图在线工具，可视化展示JSON数据的树形结构，支持展开/折叠。",
+  "url": "https://bejson.org/json-tree-view/"
+}
+</script>
 </head>
 <body>
     <header>
@@ -18,6 +48,9 @@
                     <li><a href="/#tools">工具</a></li>
                     <li><a href="/#code-gen">代码生成</a></li>
                     <li><a href="/#convert">格式转换</a></li>
+                    <li><a href="/#utils">辅助工具</a></li>
+                    <li><a href="/docs/">文档</a></li>
+                    <li><a href="/learn/">教程</a></li>
                 </ul>
             </nav>
         </div>
@@ -25,6 +58,25 @@
 
     <main class="tool-page">
         <div class="container">
+            
+            <nav aria-label="breadcrumb" style="margin-bottom: 20px; font-size: 14px; color: #666;">
+              <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap;">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/"><span itemprop="name">首页</span></a>
+                  <meta itemprop="position" content="1" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/#tools"><span itemprop="name">核心工具</span></a>
+                  <meta itemprop="position" content="2" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <span itemprop="name">JSON 树视图</span>
+                  <meta itemprop="position" content="3" />
+                </li>
+              </ol>
+            </nav>
             <div class="tool-page-header">
                 <h1>JSON 树视图</h1>
                 <p>可视化展示 JSON 数据的树形结构</p>
@@ -43,6 +95,56 @@
                 </div>
             </div>
         </div>
+    
+            <section class="tool-description" style="margin-top: 40px;">
+              <div class="container">
+                <h2>JSON 树视图 介绍</h2>
+                <p>BeJSON JSON 树视图是一款免费在线工具，无需注册，浏览器端直接使用，数据不会上传到服务器，保障您的隐私安全。</p>
+                
+                <h2>使用场景</h2>
+                <ul>
+                  <li>可视化分析大型或深层嵌套的 JSON 数据结构</li>
+                  <li>快速定位和理解第三方 API 返回的复杂数据层级</li>
+                  <li>以树形方式展示 JSON 配置，便于查找特定节点</li>
+                  <li>教学演示 JSON 的层次结构和父子关系</li>
+                </ul>
+
+                <h2>如何使用</h2>
+                <ol>
+                  <li>在输入框中粘贴需要查看的 JSON 数据</li>
+                  <li>点击"生成树视图"按钮构建树形结构</li>
+                  <li>点击节点可展开或折叠子节点，也可一键展开/折叠全部</li>
+                </ol>
+
+                <h2>常见问题</h2>
+                <div style="margin-top: 15px;">
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">适合多大的 JSON 数据？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">树视图适合查看结构复杂但数据量适中的 JSON（建议 1000 个节点以内）。过大的数据可能影响渲染性能。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">可以搜索特定的节点吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">当前版本暂不支持节点搜索功能。建议先用 Ctrl+F 浏览器搜索原始 JSON 定位大致位置，再用树视图展开该区域。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">数组和对象的展示方式有区别吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">有的。对象节点以 { } 图标显示，每个子节点显示键名；数组节点以 [ ] 图标显示，子节点显示索引编号。</p>
+                    </details>
+                </div>
+
+              </div>
+            </section>
+
+            <section class="related-tools" style="margin-top: 40px;">
+              <div class="container">
+                <h2>相关工具推荐</h2>
+                <div class="tools-grid">
+                  <div class="tool-card"><h3><a href="/json-formatter/">JSON 格式化</a></h3><p>生成前先格式化</p></div>
+                  <div class="tool-card"><h3><a href="/json-editor/">JSON 编辑器</a></h3><p>编辑后再查看树形</p></div>
+                  <div class="tool-card"><h3><a href="/json-beautifier/">JSON 美化</a></h3><p>多主题美化展示</p></div>
+                </div>
+              </div>
+            </section>
     </main>
 
     <footer>

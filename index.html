@@ -8,6 +8,34 @@
     <meta name="keywords" content="JSON格式化,JSON校验,JSON压缩,在线JSON工具,JSON编辑器">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BeJSON">
+    <meta property="og:title" content="JSON 格式化 | JSON 校验 | 在线 JSON 工具 - BeJSON">
+    <meta property="og:description" content="BeJSON提供专业的JSON在线处理工具，包括JSON格式化、校验、压缩、代码生成等，无需下载注册，浏览器直接使用。">
+    <meta property="og:url" content="https://bejson.org/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://bejson.org/favicon.ico">
+    <meta property="og:image:width" content="32">
+    <meta property="og:image:height" content="32">
+    <meta name="twitter:image" content="https://bejson.org/favicon.ico">
+    <meta name="twitter:title" content="JSON 格式化 | JSON 校验 | 在线 JSON 工具 - BeJSON">
+    <meta name="twitter:description" content="BeJSON提供专业的JSON在线处理工具，包括JSON格式化、校验、压缩、代码生成等，无需下载注册，浏览器直接使用。">
+    <link rel="canonical" href="https://bejson.org/">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "BeJSON",
+  "url": "https://bejson.org/",
+  "description": "BeJSON提供专业的JSON在线处理工具，包括JSON格式化、校验、压缩、代码生成等，无需下载注册，浏览器直接使用。",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://bejson.org/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
 </head>
 <body>
     <header>
@@ -21,6 +49,7 @@
                     <li><a href="#code-gen">代码生成</a></li>
                     <li><a href="#convert">格式转换</a></li>
                     <li><a href="#utils">辅助工具</a></li>
+                    <li><a href="/docs/">文档</a></li>
                     <li><a href="/learn/">教程</a></li>
                 </ul>
             </nav>
@@ -139,10 +168,7 @@
                         <h3><a href="/json-to-ruby/">JSON → Ruby</a></h3>
                         <p>生成 Ruby Hash</p>
                     </div>
-                    <div class="tool-card">
-                        <h3><a href="/json-to-cpp/">JSON → C++</a></h3>
-                        <p>生成 C++ Struct</p>
-                    </div>
+
                 </div>
             </div>
         </section>
@@ -250,6 +276,30 @@
                 </div>
             </div>
         </section>
+    
+        <section class="seo-content" style="padding: 60px 0; background: #f8fafc;">
+            <div class="container">
+                <h2 class="section-title">什么是 JSON？</h2>
+                <p style="color: #555; line-height: 1.9; font-size: 16px; margin-bottom: 18px;">JSON（JavaScript Object Notation）是一种轻量级的数据交换格式，易于人类阅读和编写，同时也易于机器解析和生成。它基于 JavaScript 编程语言的一个子集，但独立于语言，几乎所有主流编程语言都提供了解析和生成 JSON 数据的能力。</p>
+                <p style="color: #555; line-height: 1.9; font-size: 16px; margin-bottom: 18px;">对于前端开发者、后端工程师、测试人员以及数据分析师来说，日常工作中经常需要格式化杂乱的 JSON 数据、验证 API 返回的 JSON 结构是否正确、或者将 JSON 转换为 CSV/XML/SQL 等格式。BeJSON 提供了一站式解决方案，让您无需下载安装任何软件，打开浏览器即可使用。</p>
+                
+                <h2 class="section-title" style="margin-top: 40px;">常见问题</h2>
+                <div style="margin-top: 20px;">
+                    <details style="margin-bottom: 15px; background: #fff; padding: 15px 20px; border-radius: 10px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">BeJSON 是免费的吗？</summary>
+                        <p style="margin-top: 10px; color: #555; line-height: 1.8;">是的，BeJSON 所有工具完全免费使用，无需注册账号，没有任何广告干扰。</p>
+                    </details>
+                    <details style="margin-bottom: 15px; background: #fff; padding: 15px 20px; border-radius: 10px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">我的数据会被保存吗？</summary>
+                        <p style="margin-top: 10px; color: #555; line-height: 1.8;">不会。BeJSON 是纯前端应用，所有数据处理都在您的浏览器中完成，不会上传到服务器，刷新页面后数据即清除。</p>
+                    </details>
+                    <details style="margin-bottom: 15px; background: #fff; padding: 15px 20px; border-radius: 10px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">支持哪些编程语言的代码生成？</summary>
+                        <p style="margin-top: 10px; color: #555; line-height: 1.8;">目前支持 TypeScript、JavaScript、Java、Go、Python、C#、PHP、Swift、Kotlin、Dart、Ruby 等主流编程语言。</p>
+                    </details>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -285,8 +335,7 @@
                 <div class="footer-section">
                     <h4>学习</h4>
                     <ul>
-                        <li><a href="/learn/json-basics/">JSON 入门</a></li>
-                        <li><a href="/learn/json-schema/">JSON Schema</a></li>
+                        <li><a href="/learn/">JSON 教程</a></li>
                         <li><a href="/docs/">文档</a></li>
                     </ul>
                 </div>

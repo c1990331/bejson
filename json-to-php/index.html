@@ -8,6 +8,36 @@
     <meta name="keywords" content="JSON转PHP,json to php,JSON生成PHP">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="../css/style.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BeJSON">
+    <meta property="og:title" content="JSON 转 PHP - 在线生成 PHP 数组 - BeJSON">
+    <meta property="og:description" content="免费的JSON转PHP在线工具，输入JSON自动生成PHP数组。">
+    <meta property="og:url" content="https://bejson.org/json-to-php/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://bejson.org/favicon.ico">
+    <meta property="og:image:width" content="32">
+    <meta property="og:image:height" content="32">
+    <meta name="twitter:image" content="https://bejson.org/favicon.ico">
+    <meta name="twitter:title" content="JSON 转 PHP - 在线生成 PHP 数组 - BeJSON">
+    <meta name="twitter:description" content="免费的JSON转PHP在线工具，输入JSON自动生成PHP数组。">
+    <link rel="canonical" href="https://bejson.org/json-to-php/">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON 转 PHP",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "免费的JSON转PHP在线工具，输入JSON自动生成PHP数组。",
+  "url": "https://bejson.org/json-to-php/"
+}
+</script>
 </head>
 <body>
     <header>
@@ -18,6 +48,9 @@
                     <li><a href="/#tools">工具</a></li>
                     <li><a href="/#code-gen">代码生成</a></li>
                     <li><a href="/#convert">格式转换</a></li>
+                    <li><a href="/#utils">辅助工具</a></li>
+                    <li><a href="/docs/">文档</a></li>
+                    <li><a href="/learn/">教程</a></li>
                 </ul>
             </nav>
         </div>
@@ -25,6 +58,25 @@
 
     <main class="tool-page">
         <div class="container">
+            
+            <nav aria-label="breadcrumb" style="margin-bottom: 20px; font-size: 14px; color: #666;">
+              <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap;">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/"><span itemprop="name">首页</span></a>
+                  <meta itemprop="position" content="1" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/#code-gen"><span itemprop="name">代码生成</span></a>
+                  <meta itemprop="position" content="2" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <span itemprop="name">JSON 转 PHP</span>
+                  <meta itemprop="position" content="3" />
+                </li>
+              </ol>
+            </nav>
             <div class="tool-page-header">
                 <h1>JSON 转 PHP</h1>
                 <p>输入 JSON，自动生成 PHP 数组</p>
@@ -42,6 +94,56 @@
                 </div>
             </div>
         </div>
+    
+            <section class="tool-description" style="margin-top: 40px;">
+              <div class="container">
+                <h2>JSON 转 PHP 介绍</h2>
+                <p>BeJSON JSON 转 PHP是一款免费在线工具，无需注册，浏览器端直接使用，数据不会上传到服务器，保障您的隐私安全。</p>
+                
+                <h2>使用场景</h2>
+                <ul>
+                  <li>将 JSON API 响应转为 PHP 关联数组用于 Laravel/ThinkPHP 项目</li>
+                  <li>WordPress 插件开发中处理 JSON 配置数据</li>
+                  <li>PHP 后端接收前端 JSON 请求体后的数据结构化</li>
+                  <li>生成可直接 json_decode 兼容的 PHP 数组语法</li>
+                </ul>
+
+                <h2>如何使用</h2>
+                <ol>
+                  <li>在输入框粘贴 JSON 数据</li>
+                  <li>点击"转换"按钮</li>
+                  <li>复制生成的 PHP 数组代码到项目中使用</li>
+                </ol>
+
+                <h2>常见问题</h2>
+                <div style="margin-top: 15px;">
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">输出的是索引数组还是关联数组？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">JSON 对象转为关联数组（=>），JSON 数组转为索引数组，保持原有数据结构不变。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">字符串中的特殊字符会被转义吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">是的，单引号等特殊字符会自动转义，确保生成的 PHP 代码语法正确。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">可以直接代替 json_decode 吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-length: 1.8;">建议运行时仍使用 json_decode 解析动态数据。此工具主要用于生成静态配置或测试用的 PHP 数组字面量。</p>
+                    </details>
+                </div>
+
+              </div>
+            </section>
+
+            <section class="related-tools" style="margin-top: 40px;">
+              <div class="container">
+                <h2>相关工具推荐</h2>
+                <div class="tools-grid">
+                  <div class="tool-card"><h3><a href="/json-to-python/">JSON 转 Python</a></h3><p>Python dataclass</p></div>
+                  <div class="tool-card"><h3><a href="/json-to-java/">JSON 转 Java</a></h3><p>Java 实体类生成</p></div>
+                  <div class="tool-card"><h3><a href="/json-formatter/">JSON 格式化</a></h3><p>转换前美化数据</p></div>
+                </div>
+              </div>
+            </section>
     </main>
 
     <footer>

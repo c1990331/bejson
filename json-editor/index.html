@@ -85,6 +85,36 @@
             margin-right: 5px;
         }
     </style>
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BeJSON">
+    <meta property="og:title" content="JSON 在线编辑器 - 代码编辑器 - BeJSON">
+    <meta property="og:description" content="免费的JSON在线代码编辑器，支持语法高亮、实时预览、行号显示。">
+    <meta property="og:url" content="https://bejson.org/json-editor/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://bejson.org/favicon.ico">
+    <meta property="og:image:width" content="32">
+    <meta property="og:image:height" content="32">
+    <meta name="twitter:image" content="https://bejson.org/favicon.ico">
+    <meta name="twitter:title" content="JSON 在线编辑器 - 代码编辑器 - BeJSON">
+    <meta name="twitter:description" content="免费的JSON在线代码编辑器，支持语法高亮、实时预览、行号显示。">
+    <link rel="canonical" href="https://bejson.org/json-editor/">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON 在线编辑器",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "免费的JSON在线代码编辑器，支持语法高亮、实时预览、行号显示。",
+  "url": "https://bejson.org/json-editor/"
+}
+</script>
 </head>
 <body>
     <header>
@@ -98,6 +128,8 @@
                     <li><a href="/#code-gen">代码生成</a></li>
                     <li><a href="/#convert">格式转换</a></li>
                     <li><a href="/#utils">辅助工具</a></li>
+                    <li><a href="/docs/">文档</a></li>
+                    <li><a href="/learn/">教程</a></li>
                 </ul>
             </nav>
         </div>
@@ -105,6 +137,25 @@
 
     <main class="tool-page">
         <div class="container">
+            
+            <nav aria-label="breadcrumb" style="margin-bottom: 20px; font-size: 14px; color: #666;">
+              <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap;">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/"><span itemprop="name">首页</span></a>
+                  <meta itemprop="position" content="1" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/#tools"><span itemprop="name">核心工具</span></a>
+                  <meta itemprop="position" content="2" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <span itemprop="name">JSON 在线编辑器</span>
+                  <meta itemprop="position" content="3" />
+                </li>
+              </ol>
+            </nav>
             <div class="tool-page-header">
                 <h1>JSON 在线编辑器</h1>
                 <p>实时预览、语法高亮、行号显示</p>
@@ -163,6 +214,56 @@
                 </ul>
             </div>
         </div>
+    
+            <section class="tool-description" style="margin-top: 40px;">
+              <div class="container">
+                <h2>JSON 在线编辑器 介绍</h2>
+                <p>BeJSON JSON 在线编辑器是一款免费在线工具，无需注册，浏览器端直接使用，数据不会上传到服务器，保障您的隐私安全。</p>
+                
+                <h2>使用场景</h2>
+                <ul>
+                  <li>在线编写和调试复杂嵌套的 JSON 配置文件</li>
+                  <li>实时编辑 JSON 并在右侧面板即时看到格式化预览</li>
+                  <li>编辑 API 请求体或 Mock 数据，边写边验证格式</li>
+                  <li>编辑器自动保存输入内容，关闭浏览器后重新打开仍可继续</li>
+                </ul>
+
+                <h2>如何使用</h2>
+                <ol>
+                  <li>在左侧编辑器中输入或粘贴 JSON 内容</li>
+                  <li>选择缩进方式，可开启按键排序和行号显示</li>
+                  <li>右侧面板实时显示格式化结果，点击"复制"即可使用</li>
+                </ol>
+
+                <h2>常见问题</h2>
+                <div style="margin-top: 15px;">
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">编辑的内容会保存在哪里？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">内容自动保存到浏览器的 localStorage 中，不会上传到服务器。清除浏览器数据会导致保存的内容丢失。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">支持撤销/重做操作吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">编辑器本身支持浏览器原生的 Ctrl+Z 撤销操作。更复杂的编辑体验建议使用 VS Code 等专业编辑器。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">和 JSON 格式化工具有什么区别？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">编辑器提供左右分栏实时预览、行号显示、本地自动保存等功能，更适合边写边改的场景；格式化工具则专注于单次的格式转换。</p>
+                    </details>
+                </div>
+
+              </div>
+            </section>
+
+            <section class="related-tools" style="margin-top: 40px;">
+              <div class="container">
+                <h2>相关工具推荐</h2>
+                <div class="tools-grid">
+                  <div class="tool-card"><h3><a href="/json-formatter/">JSON 格式化</a></h3><p>一键格式化输入内容</p></div>
+                  <div class="tool-card"><h3><a href="/json-validator/">JSON 校验</a></h3><p>实时校验语法正确性</p></div>
+                  <div class="tool-card"><h3><a href="/json-schema-validator/">Schema 校验</a></h3><p>验证数据结构与约束</p></div>
+                </div>
+              </div>
+            </section>
     </main>
 
     <footer>

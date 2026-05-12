@@ -8,6 +8,36 @@
     <meta name="keywords" content="YAML转JSON,yaml to json,YAML转换JSON">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="../css/style.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BeJSON">
+    <meta property="og:title" content="YAML 转 JSON - 在线 YAML 转换为 JSON - BeJSON">
+    <meta property="og:description" content="免费的YAML转JSON在线工具，输入YAML自动转换为JSON格式。">
+    <meta property="og:url" content="https://bejson.org/yaml-to-json/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://bejson.org/favicon.ico">
+    <meta property="og:image:width" content="32">
+    <meta property="og:image:height" content="32">
+    <meta name="twitter:image" content="https://bejson.org/favicon.ico">
+    <meta name="twitter:title" content="YAML 转 JSON - 在线 YAML 转换为 JSON - BeJSON">
+    <meta name="twitter:description" content="免费的YAML转JSON在线工具，输入YAML自动转换为JSON格式。">
+    <link rel="canonical" href="https://bejson.org/yaml-to-json/">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "YAML 转 JSON",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "免费的YAML转JSON在线工具，输入YAML自动转换为JSON格式。",
+  "url": "https://bejson.org/yaml-to-json/"
+}
+</script>
 </head>
 <body>
     <header>
@@ -18,6 +48,9 @@
                     <li><a href="/#tools">工具</a></li>
                     <li><a href="/#code-gen">代码生成</a></li>
                     <li><a href="/#convert">格式转换</a></li>
+                    <li><a href="/#utils">辅助工具</a></li>
+                    <li><a href="/docs/">文档</a></li>
+                    <li><a href="/learn/">教程</a></li>
                 </ul>
             </nav>
         </div>
@@ -25,6 +58,25 @@
 
     <main class="tool-page">
         <div class="container">
+            
+            <nav aria-label="breadcrumb" style="margin-bottom: 20px; font-size: 14px; color: #666;">
+              <ol itemscope itemtype="https://schema.org/BreadcrumbList" style="list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap;">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/"><span itemprop="name">首页</span></a>
+                  <meta itemprop="position" content="1" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="/#convert"><span itemprop="name">格式转换</span></a>
+                  <meta itemprop="position" content="2" />
+                </li>
+                <li style="color: #999;">/</li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <span itemprop="name">YAML 转 JSON</span>
+                  <meta itemprop="position" content="3" />
+                </li>
+              </ol>
+            </nav>
             <div class="tool-page-header">
                 <h1>YAML 转 JSON</h1>
                 <p>输入 YAML，自动转换为 JSON 格式</p>
@@ -42,6 +94,56 @@
                 </div>
             </div>
         </div>
+    
+            <section class="tool-description" style="margin-top: 40px;">
+              <div class="container">
+                <h2>YAML 转 JSON 介绍</h2>
+                <p>BeJSON YAML 转 JSON是一款免费在线工具，无需注册，浏览器端直接使用，数据不会上传到服务器，保障您的隐私安全。</p>
+                
+                <h2>使用场景</h2>
+                <ul>
+                  <li>将 Docker Compose / Kubernetes / GitHub Actions 的 YAML 配置转为 JSON 用于程序读取</li>
+                  <li>CI/CD 流水线中将 YAML 配置参数转为 JSON 传递给下游任务</li>
+                  <li>Ruby on Rails / CircleCI 等项目的 YAML 配置解析和数据提取</li>
+                  <li>Ansible Playbook 的 YAML 清单转为结构化的 JSON 数据</li>
+                </ul>
+
+                <h2>如何使用</h2>
+                <ol>
+                  <li>在输入框粘贴 YAML 数据</li>
+                  <li>点击"转换"按钮解析 YAML 层级结构</li>
+                  <li>复制生成的 JSON 结果使用</li>
+                </ol>
+
+                <h2>常见问题</h2>
+                <div style="margin-top: 15px;">
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">多文档 YAML 支持吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">当前支持单个 YAML 文档的转换。多文档（用 --- 分隔）建议拆分后逐个转换。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">锚点引用怎么处理？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">YAML 锚点（&amp;ref）会被解析为字符串值保留。</p>
+                    </details>
+                    <details style="margin-bottom: 12px; background: #fff; padding: 14px 18px; border-radius: 8px; border: 1px solid #eef0f2;">
+                        <summary style="font-weight: 600; color: #1a1a2e; cursor: pointer;">布尔值兼容吗？</summary>
+                        <p style="margin-top: 8px; color: #555; line-height: 1.8;">true/false/null/yes/no 等常见布尔值都会正确映射为 JSON 布尔类型。</p>
+                    </details>
+                </div>
+
+              </div>
+            </section>
+
+            <section class="related-tools" style="margin-top: 40px;">
+              <div class="container">
+                <h2>相关工具推荐</h2>
+                <div class="tools-grid">
+                  <div class="tool-card"><h3><a href="/json-to-yaml/">JSON 转 YAML</a></h3><p>反向转换</p></div>
+                  <div class="tool-card"><h3><a href="/xml-to-json/">XML 转 JSON</a></h3><p>遗留系统兼容</p></div>
+                  <div class="tool-card"><h3><a href="/json-formatter/">JSON 格式化</a></h3><p>转换后美化</p></div>
+                </div>
+              </div>
+            </section>
     </main>
 
     <footer>
