@@ -186,16 +186,41 @@
         function convert() {
             const input = document.getElementById('json-input').value;
             const output = document.getElementById('output');
-            
+
             if (!input.trim()) {
                 showToast('请输入 JSON 数据', 'error');
                 return;
             }
-            
+
+            let parsed;
             try {
-                const result = jsonToCsv(input);
+                parsed = JSON.parse(input);
+            } catch (e) {
+                showToast('JSON 解析失败: ' + e.message, 'error');
+                return;
+            }
+
+            if (!Array.isArray(parsed)) {
+                showToast('转换失败：JSON 必须是数组格式，例如 [{"name":"张三","age":20}]', 'error');
+                return;
+            }
+
+            if (parsed.length === 0) {
+                showToast('转换失败：数组不能为空，请提供至少一条数据', 'error');
+                return;
+            }
+
+            // 过滤出对象元素，跳过非对象项
+            const validItems = parsed.filter(item => item !== null && typeof item === 'object');
+            if (validItems.length === 0) {
+                showToast('转换失败：数组元素必须是对象，例如 {"name":"张三","age":20}', 'error');
+                return;
+            }
+
+            try {
+                const result = jsonToCsv(validItems);
                 output.value = result;
-                showToast('转换成功', 'success');
+                showToast('转换成功（' + validItems.length + ' 条数据）', 'success');
             } catch (e) {
                 showToast('转换失败: ' + e.message, 'error');
             }
